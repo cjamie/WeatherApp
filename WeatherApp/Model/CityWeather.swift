@@ -62,7 +62,18 @@ struct Main: Codable{
     //for long/lat
     var sea_level: Double?
     var grnd_level: Double?
-    var temp_kf:Int //??
+    var temp_kf:Double //??
+    
+//    "temp":282.66,
+//    "temp_min":282.406,
+//    "temp_max":282.66,
+//    "pressure":988.54,
+//    "sea_level":1026.93,
+//    "grnd_level":988.54,
+//    "humidity":94,
+//    "temp_kf":0.25
+    
+    
 }
 
 struct Wind: Codable{

@@ -107,11 +107,9 @@ extension NetworkingFunction: NetworkProtocol{
         Alamofire.request(uurl).response { (dataResponse) in
             guard dataResponse.error == nil else {  //error
                 guard let resp = dataResponse.response else {
-                    //no response.
                     completion(nil, NetworkingError.noResponse)
                     return
                 }
-                //there is error but still has a response code
                 completion(nil, NetworkingError.responseError(resp.statusCode))
                 return
             }
@@ -126,8 +124,8 @@ extension NetworkingFunction: NetworkProtocol{
                 let temp = try JSONDecoder().decode(ForecastWeek.self, from: data)
                 completion(temp,nil)
             }catch let error{
-                print("Serialization Error")
-                completion(nil, error)
+                print(NetworkingError.couldNotParseData)
+                completion(nil, error)//maybe send back NetworkingError.couldNot.. instead
             }
         }
     }
