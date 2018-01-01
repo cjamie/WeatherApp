@@ -15,15 +15,23 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         print("view did load")
         let tempNet = Networking()
-        tempNet.getWeather(by: .zipCode(94040)) { (cityWeather, error) in
+//        tempNet.getWeather(by: .zipCode(94040)) { (cityWeather, error) in
+//            print("completionhandler")
+//            guard error == nil else{print(error?.localizedDescription);return}
+//            
+//            guard let weatherTemp = cityWeather else {return}
+//            print(weatherTemp)
+//        }
+
+        tempNet.getWeather(by: .cityName("Boston")) { (cityWeather, error) in
             print("completionhandler")
             guard error == nil else{print(error?.localizedDescription);return}
             
             guard let weatherTemp = cityWeather else {return}
             print(weatherTemp)
         }
+
         
-//        http://samples.openweathermap.org/data/2.5/weather?zip=94040,us&appid=b6907d289e10d714a6e88b30761fae22
     }
 
     override func didReceiveMemoryWarning() {

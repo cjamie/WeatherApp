@@ -15,16 +15,15 @@ import Alamofire
  Enums have amazing utility for separation of concerns.
  */
 
-protocol NetworkProtocol {
-    //    func getImage(byName url:String, withType type:StructType, completion: @escaping(UIImage?, Error?) -> ())
-    
+protocol NetworkProtocol {    
     func getWeather(by type:WeatherMethod, completion: @escaping(CityWeather?, Error?)->())
+//    func getForcastWeek()
 }
 
 enum WeatherMethod{
     case cityName(String) //{cityName, countryCode}
     case cityId(Int)    //{cityID}
-    case geographicCooridinates(Int, Int) //{lat&lon}
+    case geographicCooridinates(Double, Double) //{lat&lon}
     case zipCode(Int) //{zipCode&countryCode}
 }
 
@@ -84,12 +83,10 @@ extension NetworkingFunction: NetworkProtocol{
                 let temp = try JSONDecoder().decode(CityWeather.self, from: data)
                 completion(temp,nil)
             }catch let error{
-                print("Serialziation Error")
+                print("Serialization Error")
                 completion(nil, error)
             }
         }
     }
-    
-    
 }
 
