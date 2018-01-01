@@ -18,6 +18,10 @@
 		847BB4871FF9CD7A00A08EC9 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BB4861FF9CD7A00A08EC9 /* Networking.swift */; };
 		847BB4891FF9D06700A08EC9 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BB4881FF9D06700A08EC9 /* GlobalConstants.swift */; };
 		847BB48B1FFA39DF00A08EC9 /* ForecastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BB48A1FFA39DF00A08EC9 /* ForecastWeek.swift */; };
+		847BB4911FFAF4DE00A08EC9 /* NewPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BB4901FFAF4DE00A08EC9 /* NewPageView.swift */; };
+		847BB4931FFAFB1900A08EC9 /* RedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BB4921FFAFB1900A08EC9 /* RedViewController.swift */; };
+		847BB4951FFAFB3200A08EC9 /* GreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BB4941FFAFB3200A08EC9 /* GreenViewController.swift */; };
+		847BB4971FFAFB4900A08EC9 /* BlueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BB4961FFAFB4900A08EC9 /* BlueViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		847BB4861FF9CD7A00A08EC9 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		847BB4881FF9D06700A08EC9 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		847BB48A1FFA39DF00A08EC9 /* ForecastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeek.swift; sourceTree = "<group>"; };
+		847BB4901FFAF4DE00A08EC9 /* NewPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPageView.swift; sourceTree = "<group>"; };
+		847BB4921FFAFB1900A08EC9 /* RedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedViewController.swift; sourceTree = "<group>"; };
+		847BB4941FFAFB3200A08EC9 /* GreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenViewController.swift; sourceTree = "<group>"; };
+		847BB4961FFAFB4900A08EC9 /* BlueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueViewController.swift; sourceTree = "<group>"; };
 		EBA7559BB1ADC0F5B7BC75EF /* Pods-WeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FC110A71E25BAC4862DF7B53 /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +105,10 @@
 			isa = PBXGroup;
 			children = (
 				844E265E1FF9794B001449E4 /* ViewController.swift */,
+				847BB4901FFAF4DE00A08EC9 /* NewPageView.swift */,
+				847BB4921FFAFB1900A08EC9 /* RedViewController.swift */,
+				847BB4941FFAFB3200A08EC9 /* GreenViewController.swift */,
+				847BB4961FFAFB4900A08EC9 /* BlueViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -273,12 +285,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				844E26721FF9798C001449E4 /* CityWeather.swift in Sources */,
+				847BB4931FFAFB1900A08EC9 /* RedViewController.swift in Sources */,
 				847BB4871FF9CD7A00A08EC9 /* Networking.swift in Sources */,
 				844E26651FF9794B001449E4 /* WeatherApp.xcdatamodeld in Sources */,
+				847BB4951FFAFB3200A08EC9 /* GreenViewController.swift in Sources */,
 				847BB48B1FFA39DF00A08EC9 /* ForecastWeek.swift in Sources */,
 				844E265F1FF9794B001449E4 /* ViewController.swift in Sources */,
 				847BB4891FF9D06700A08EC9 /* GlobalConstants.swift in Sources */,
 				844E265D1FF9794B001449E4 /* AppDelegate.swift in Sources */,
+				847BB4911FFAF4DE00A08EC9 /* NewPageView.swift in Sources */,
+				847BB4971FFAFB4900A08EC9 /* BlueViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
