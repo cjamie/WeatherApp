@@ -62,6 +62,7 @@ struct Main: Codable{
     //for long/lat
     var sea_level: Double?
     var grnd_level: Double?
+    var temp_kf:Int //??
 }
 
 struct Wind: Codable{
@@ -74,10 +75,11 @@ struct Clouds: Codable{
 }
 
 struct Sys: Codable{
-//    var type: Int
-//    var id: Int
-    var message: Double
-    var country: String
-    var sunrise: Int
-    var sunset: Int
+    var type: Int?
+    var id: Int?
+    var message: Double?
+    var country: String?
+    var sunrise: Int?
+    var sunset: Int?
+    var pod: String
 }

@@ -8,25 +8,73 @@
 
 import Foundation
 
-struct ForecastWeek:Codable{
+struct ForecastWeek:Codable{//not Codable
     var cod:String
-    var message:Int
+    var message:Double
     var city:City
     var cnt:Int
-    var list:[ForecastDay]
+//    var list:[ForecastDayByZip]
+    
+    
 }
 
-struct ForecastDay:Codable{
+//can't make forecastDay conform to Codable so need to manually parse json
+//enum ForecastDay{
+//    case ByInt(ForecastDayByInt)
+//    case ByCity(ForecastDayByCity)
+//    case ByLonLat(ForecastDayByLonLat)
+//    case ById(ForcaseDayById)
+//}
+
+struct ForecastDayById:Codable{
     var dt: Int
-    var temp:Temp
-    var pressure:Double
+    var temp:Temp?
+    var pressure:Double?
     var humidity:Int
     var weather:[ForecastWeather]
     var speed:Double
     var deg:Int
-    var clouds:Int
-    var snow:Double
+    var clouds:Int//this can be an int or a Clouds.... in other type
+    var snow:Double? //some days don't have snow
 }
+
+
+struct ForecastDayByName: Codable{
+    var dt:Int
+    var main: Main
+    var weather:[ForecastWeather]
+    var clouds:Clouds
+    var wind:Wind
+//    var rain: Rain?
+    var sys:Sys
+    var dt_txt:String
+}
+//struct ForecastDayByLonLat{
+//    var dt:Int
+//    var main:{  },
+//    var weather:[ForecastWeather]
+//    var clouds: Clouds,
+//    var wind:{  },
+//    var rain:Rain?
+//    var sys:{  },
+//    var dt_txt: String
+//}
+
+struct ForecastDayByZip:Codable{
+    var dt:Int
+    var main: Main
+    var weather:[ForecastWeather]
+    var clouds:Clouds
+    var wind:Wind
+//    var rain: ?
+    var sys:Sys
+    var dt_txt:String
+}
+
+
+
+
+
 
 struct Temp:Codable{
     var day:Double
