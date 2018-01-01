@@ -11,10 +11,8 @@ import Alamofire
 //    var a = "http://samples.openweathermap.org/data/2.5/weather?zip=94040,us&appid=b6907d289e10d714a6e88b30761fae22"
 
 // MARK: protocol extensions, enum's application in networking
-/*
- Enums have amazing utility for separation of concerns.
- */
 
+//TODO: implment for getForcast with enums
 protocol NetworkProtocol {    
     func getWeather(by type:WeatherMethod, completion: @escaping(CityWeather?, Error?)->())
 //    func getForcastWeek()
@@ -55,7 +53,7 @@ extension NetworkingFunction: NetworkProtocol{
         case .cityName(let myName):
             myUrl = "http://samples.openweathermap.org/data/2.5/weather?q=\(myName)&appid=\(GlobalConstants.bearer)"
         case .geographicCooridinates(let lat, let lon):
-            myUrl = "http://samples.openweathermap.org/data/2.5/weather?lat=\(lat))&lon=\(lon)&appid=\(GlobalConstants.bearer)"
+            myUrl = "http://samples.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(GlobalConstants.bearer)"
         case .zipCode(let myZipCode):
             myUrl = "http://samples.openweathermap.org/data/2.5/weather?zip=\(myZipCode),us&appid=\(GlobalConstants.bearer)"
         }
@@ -80,6 +78,8 @@ extension NetworkingFunction: NetworkProtocol{
             }
             
             do{
+                
+                print(uurl)
                 let temp = try JSONDecoder().decode(CityWeather.self, from: data)
                 completion(temp,nil)
             }catch let error{

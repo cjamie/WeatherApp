@@ -15,21 +15,19 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         print("view did load")
         let tempNet = Networking()
-//        tempNet.getWeather(by: .zipCode(94040)) { (cityWeather, error) in
-//            print("completionhandler")
-//            guard error == nil else{print(error?.localizedDescription);return}
-//            
-//            guard let weatherTemp = cityWeather else {return}
-//            print(weatherTemp)
-//        }
-
-        tempNet.getWeather(by: .cityName("Boston")) { (cityWeather, error) in
-            print("completionhandler")
+        tempNet.getWeather(by: .zipCode(94040)) { (cityWeather, error) in
             guard error == nil else{print(error?.localizedDescription);return}
             
             guard let weatherTemp = cityWeather else {return}
             print(weatherTemp)
         }
+
+//        tempNet.getWeather(by: .geographicCooridinates(3.2, 55.2)) { (cityWeather, error) in
+//            guard error == nil else{print(error!.localizedDescription);return}
+//
+//            guard let weatherTemp = cityWeather else {return}
+//            print(weatherTemp)
+//        }
 
         
     }

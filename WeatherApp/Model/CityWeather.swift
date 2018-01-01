@@ -19,19 +19,19 @@ enum StructType{
     case sys(Sys)
 }
 
-struct MultipleCityWeather:Codable{
-    var cod:String
-    var calctime:Double
-    var cnt:Int
+struct MultipleCityWeather: Codable{
+    var cod: String
+    var calctime: Double
+    var cnt: Int
     var list: [CityWeather]
 }
 
-struct CityWeather: Codable{ //
+struct CityWeather: Codable{ 
     var coord: Coord
     var weather: [Weather]
     var base: String
     var main: Main
-    var visibility: Int
+    var visibility: Int? //does not exist for lon/lat
     var wind: Wind
     var dt: Int//maybe this is a Long
     var clouds: Clouds
@@ -55,10 +55,13 @@ struct Weather: Codable{
 
 struct Main: Codable{
     var temp: Double
-    var pressure: Int
+    var pressure: Double //tricky. thought was Int
     var humidity: Int
     var temp_min: Double
     var temp_max: Double
+    //for long/lat
+    var sea_level: Double?
+    var grnd_level: Double?
 }
 
 struct Wind: Codable{
@@ -71,8 +74,8 @@ struct Clouds: Codable{
 }
 
 struct Sys: Codable{
-    var type: Int
-    var id: Int
+//    var type: Int
+//    var id: Int
     var message: Double
     var country: String
     var sunrise: Int
