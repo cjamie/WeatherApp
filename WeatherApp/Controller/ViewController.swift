@@ -22,30 +22,9 @@ class ViewController: UIViewController {
     
     func getForecast(){
         let tempNet = Networking()
-
-//        tempNet.getForcastWeek(by: .cityId(2172797)) { (forecastWeek, error) in
-//            print("forecast 1")
-//            guard error == nil else{print(error!.localizedDescription);return}
-//            guard let weatherTemp = forecastWeek else {return}
-//            print(weatherTemp)
-//        }
-//
-//        tempNet.getForcastWeek(by: .cityName("Boston")) { (forecastWeek, error) in
-//            print("forecast 2")
-//            guard error == nil else{print(error!.localizedDescription);return}
-//            guard let weatherTemp = forecastWeek else {return}
-//            print(weatherTemp)
-//        }
-//
-//        tempNet.getForcastWeek(by: .geographicCooridinates(2.5, 32.1)) { (forecastWeek, error) in
-//            print("forecast 3")
-//            guard error == nil else{print(error!.localizedDescription);return}
-//            guard let weatherTemp = forecastWeek else {return}
-//            print(weatherTemp)
-//        }
         
         tempNet.getForcastWeek(by: .zipCode(90210)) { (forecastWeek, error) in
-            print("forecast 4")
+            print("forecast completionHandler")
             guard error == nil else{print(error!.localizedDescription);return}
             guard let weatherTemp = forecastWeek else {return}
             print(weatherTemp)
@@ -75,6 +54,29 @@ class ViewController: UIViewController {
         //        }
         
     }
+    
+}
+
+typealias privateWeatherFunction = ViewController
+extension privateWeatherFunction{
+//    let fahrenheit = currentWeather["temperature"] as Int
+//    temperature = convertToCelsius(fahrenheit)
+
+    func FarToCel(forFar temp: Double) -> Double {
+        return 5*temp/9 - 32.0
+    }
+
+    func CelToFar(){
+        
+    }
+    
+    func KelToCel(forKel temp:Double)->Double{
+        return temp-273.15
+    }
+    func KelToFar(forKel temp:Double)->Double{
+         return 9/5*(temp - 273.15) + 32
+    }
+    
     
 }
 

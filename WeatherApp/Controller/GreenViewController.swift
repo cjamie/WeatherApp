@@ -10,11 +10,24 @@ import UIKit
 
 class GreenViewController: UIViewController {
     @IBOutlet weak var textLabel: UILabel!
-
+    @IBOutlet weak var inputText: UITextField!
+    @IBOutlet weak var responseLabel: UILabel!
+    @IBAction func validateZip(_ sender: Any) {
+        
+        guard let tempInput = inputText.text else{return}
+        guard let temp = Int(tempInput) else {
+            responseLabel.text = "Invalid input"
+            return
+        }
+        if 501...99950 ~= temp {
+            responseLabel.text = "seems ok 👍"
+        }else{
+            responseLabel.text = "Out of range!"
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.textLabel?.text = "please enter in your 5-digit zipcode. "
-
+        self.textLabel?.text = "Please enter in your 5-digit zipcode. "
         // Do any additional setup after loading the view.
     }
     

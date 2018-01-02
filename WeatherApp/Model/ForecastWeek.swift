@@ -75,7 +75,7 @@ struct ForecastDayByZip:Codable{
 struct Rain:Codable{ //how does this work with codable?
     var rain3h:Double?
     init?(json: [String: Double]) {
-        guard let my3h = json["3h"] else {print("serialization Error- Rain");return nil}
+        guard let my3h = json["3h"] else {print("Serialization Error- Rain");return nil}
         self.rain3h = my3h
     }
 }
