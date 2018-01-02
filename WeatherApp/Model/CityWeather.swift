@@ -55,25 +55,14 @@ struct Weather: Codable{
 
 struct Main: Codable{
     var temp: Double
-    var pressure: Double //tricky. thought was Int
+    var pressure: Double //thought was Int
     var humidity: Int
     var temp_min: Double
     var temp_max: Double
     //for long/lat
     var sea_level: Double?
     var grnd_level: Double?
-    var temp_kf:Double //??
-    
-//    "temp":282.66,
-//    "temp_min":282.406,
-//    "temp_max":282.66,
-//    "pressure":988.54,
-//    "sea_level":1026.93,
-//    "grnd_level":988.54,
-//    "humidity":94,
-//    "temp_kf":0.25
-    
-    
+    var temp_kf:Double
 }
 
 struct Wind: Codable{

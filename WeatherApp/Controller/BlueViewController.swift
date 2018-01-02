@@ -25,7 +25,7 @@ class BlueViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier == "toMain"{
-            guard let mainVC = segue.destination as? ViewController else {return}
+            guard let _ = segue.destination as? ViewController else {return}
             
             let userDefaults = UserDefaults.standard
             userDefaults.setValue(true, forKey: "WalkthroughComplete")

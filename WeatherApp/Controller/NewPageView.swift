@@ -10,6 +10,8 @@ import UIKit
 
 class NewPageView: UIPageViewController{
     
+    var myZip = Int()
+    var myFormat = TempType
     
     //store your viewControllers in a lazy array
     private(set) lazy var pageViewArr:[UIViewController] = {

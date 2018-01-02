@@ -8,15 +8,36 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+enum TempType{
+    case Celsius(Double)
+    case Fahrenheit(Double)
     
+    var Value: Double{
+        switch self{
+        case .Celsius(let input):
+            return KelToCel(forKel: input)
+        case .Fahrenheit(let input):
+            return KelToFar(forKel: input)
+        }
+    }
+}
+
+extension TempType{
+    func KelToCel(forKel temp:Double)->Double{
+        return temp-273.15
+    }
+    func KelToFar(forKel temp:Double)->Double{
+        return 9/5*(temp - 273.15) + 32
+    }
+}
+
+class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("view did load")
         getForecast()
         //        getWeather()
-        
     }
     
     
@@ -29,8 +50,6 @@ class ViewController: UIViewController {
             guard let weatherTemp = forecastWeek else {return}
             print(weatherTemp)
         }
-        
-        
     }
     
     
@@ -57,26 +76,4 @@ class ViewController: UIViewController {
     
 }
 
-typealias privateWeatherFunction = ViewController
-extension privateWeatherFunction{
-//    let fahrenheit = currentWeather["temperature"] as Int
-//    temperature = convertToCelsius(fahrenheit)
-
-    func FarToCel(forFar temp: Double) -> Double {
-        return 5*temp/9 - 32.0
-    }
-
-    func CelToFar(){
-        
-    }
-    
-    func KelToCel(forKel temp:Double)->Double{
-        return temp-273.15
-    }
-    func KelToFar(forKel temp:Double)->Double{
-         return 9/5*(temp - 273.15) + 32
-    }
-    
-    
-}
 
