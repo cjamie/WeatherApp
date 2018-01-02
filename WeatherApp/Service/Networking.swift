@@ -35,7 +35,7 @@ enum NetworkingError:Error{
     case noResponse
     case responseError(Int) //HTTP response codes
     case noData
-    case couldNotParseData //TODO: add extra for implementation for invalid json/invalid codable struct
+    case couldNotParseData
 }
 
 
@@ -51,13 +51,13 @@ extension NetworkingFunction: NetworkProtocol{
         var myUrl = String()
         switch type{
         case .cityId(let myId):  //forecast is different from weather.
-            myUrl = "http://samples.openweathermap.org/data/2.5/weather?id=\(myId),DE&appid=\(GlobalConstants.bearer)"
+            myUrl = "http://samples.openweathermap.org/data/2.5/weather?id=\(myId),DE&appid=\(GlobalStuff.bearer)"
         case .cityName(let myName):
-            myUrl = "http://samples.openweathermap.org/data/2.5/weather?q=\(myName)&appid=\(GlobalConstants.bearer)"
+            myUrl = "http://samples.openweathermap.org/data/2.5/weather?q=\(myName)&appid=\(GlobalStuff.bearer)"
         case .geographicCooridinates(let lat, let lon):
-            myUrl = "http://samples.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(GlobalConstants.bearer)"
+            myUrl = "http://samples.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(GlobalStuff.bearer)"
         case .zipCode(let myZipCode):
-            myUrl = "http://samples.openweathermap.org/data/2.5/weather?zip=\(myZipCode),us&appid=\(GlobalConstants.bearer)"
+            myUrl = "http://samples.openweathermap.org/data/2.5/weather?zip=\(myZipCode),us&appid=\(GlobalStuff.bearer)"
         }
         
         guard let uurl = URL(string:myUrl) else {return}
@@ -72,7 +72,6 @@ extension NetworkingFunction: NetworkProtocol{
                 completion(nil, NetworkingError.responseError(resp.statusCode))
                 return
             }
-            
             guard let data = dataResponse.data else {
                 //no data
                 completion(nil, NetworkingError.noData)
@@ -94,13 +93,13 @@ extension NetworkingFunction: NetworkProtocol{
         var myUrl = String()
         switch type{
         case .cityId(let myId):
-            myUrl = "http://samples.openweathermap.org/data/2.5/forecast/daily?id=\(myId)&appid=\(GlobalConstants.bearer)"//&lang=\(en)
+            myUrl = "http://samples.openweathermap.org/data/2.5/forecast/daily?id=\(myId)&appid=\(GlobalStuff.bearer)"//&lang=\(en)
         case .cityName(let myName):
-            myUrl = "http://samples.openweathermap.org/data/2.5/forecast?q=\(myName)&appid=\(GlobalConstants.bearer)"
+            myUrl = "http://samples.openweathermap.org/data/2.5/forecast?q=\(myName)&appid=\(GlobalStuff.bearer)"
         case .geographicCooridinates(let lat, let lon):
-            myUrl = "http://samples.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(GlobalConstants.bearer)"
+            myUrl = "http://samples.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(GlobalStuff.bearer)"
         case .zipCode(let myZipCode):
-            myUrl = "http://samples.openweathermap.org/data/2.5/forecast?zip=\(myZipCode),us&appid=\(GlobalConstants.bearer)"
+            myUrl = "http://samples.openweathermap.org/data/2.5/forecast?zip=\(myZipCode),us&appid=\(GlobalStuff.bearer)"
         }
 
         guard let uurl = URL(string:myUrl) else {return}
@@ -129,8 +128,5 @@ extension NetworkingFunction: NetworkProtocol{
             }
         }
     }
-    
-    
-    
 }
 

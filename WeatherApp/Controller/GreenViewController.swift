@@ -20,7 +20,8 @@ class GreenViewController: UIViewController {
             return
         }
         if 501...99950 ~= temp {
-            responseLabel.text = "seems ok 👍"
+            GlobalStuff.myZipCodes.append(temp)
+            responseLabel.text = "seems... ok 👍"
         }else{
             responseLabel.text = "Out of range!"
         }

@@ -31,7 +31,12 @@ extension TempType{
     }
 }
 
+
+
 class ViewController: UIViewController {
+    var myCityWeather:CityWeather?
+    var myForecastWeek:ForecastWeek?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

@@ -174,49 +174,70 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
                                 <state key="normal" title="Pick your format!🤘">
-                                    <color key="titleColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toMain" id="lCD-aA-JeV"/>
+                                    <action selector="shouldPerformSegue:" destination="lnG-Cy-4nz" eventType="touchUpInside" id="yNH-c8-gah"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Celsius" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="40" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WS1-pH-rdg">
-                                <rect key="frame" x="0.0" y="148.5" width="375" height="55"/>
-                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="40"/>
-                                <color key="textColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fahrenheit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dd0-m8-uLP">
-                                <rect key="frame" x="0.0" y="463.5" width="375" height="70"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0L-JS-ZYI">
+                                <rect key="frame" x="10" y="183.5" width="355" height="70"/>
+                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="42"/>
+                                <state key="normal" title="Fahrenheit">
+                                    <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="farButton:" destination="lnG-Cy-4nz" eventType="touchUpInside" id="Mrx-ni-6dB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNL-N5-pzD">
+                                <rect key="frame" x="10" y="413.5" width="355" height="70"/>
+                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="42"/>
+                                <state key="normal" title="Celsius">
+                                    <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="celButton:" destination="lnG-Cy-4nz" eventType="touchUpInside" id="wT3-iD-M7B"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgX-b7-gwU">
+                                <rect key="frame" x="30" y="567" width="315" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="mnr-Bu-l1O"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="90" id="t3a-fC-238"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="40"/>
-                                <color key="textColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dd0-m8-uLP" firstAttribute="leading" secondItem="TdF-aj-X5n" secondAttribute="leading" id="6W7-LO-lJR"/>
-                            <constraint firstItem="ZlD-tI-PJu" firstAttribute="top" secondItem="WS1-pH-rdg" secondAttribute="bottom" constant="100" id="9v6-Z3-MXn"/>
-                            <constraint firstItem="TdF-aj-X5n" firstAttribute="trailing" secondItem="dd0-m8-uLP" secondAttribute="trailing" id="E81-W8-rSL"/>
-                            <constraint firstItem="WS1-pH-rdg" firstAttribute="leading" secondItem="TdF-aj-X5n" secondAttribute="leading" id="Ikb-Ve-5QQ"/>
+                            <constraint firstItem="GgX-b7-gwU" firstAttribute="leading" secondItem="TdF-aj-X5n" secondAttribute="leading" constant="30" id="1xd-aM-59M"/>
+                            <constraint firstItem="TdF-aj-X5n" firstAttribute="trailing" secondItem="dNL-N5-pzD" secondAttribute="trailing" constant="10" id="Gd4-ZB-eww"/>
+                            <constraint firstItem="dNL-N5-pzD" firstAttribute="leading" secondItem="TdF-aj-X5n" secondAttribute="leading" constant="10" id="KNJ-ey-h6p"/>
+                            <constraint firstItem="ZlD-tI-PJu" firstAttribute="top" secondItem="O0L-JS-ZYI" secondAttribute="bottom" constant="50" id="N0t-iy-rdE"/>
                             <constraint firstItem="TdF-aj-X5n" firstAttribute="trailing" secondItem="ZlD-tI-PJu" secondAttribute="trailing" constant="155" id="NVT-yR-c4H"/>
+                            <constraint firstItem="TdF-aj-X5n" firstAttribute="trailing" secondItem="O0L-JS-ZYI" secondAttribute="trailing" constant="10" id="QTF-je-ebv"/>
+                            <constraint firstItem="TdF-aj-X5n" firstAttribute="trailing" secondItem="GgX-b7-gwU" secondAttribute="trailing" constant="30" id="Rqy-i6-3Dc"/>
+                            <constraint firstItem="O0L-JS-ZYI" firstAttribute="leading" secondItem="TdF-aj-X5n" secondAttribute="leading" constant="10" id="TK5-YS-zIt"/>
                             <constraint firstItem="ZlD-tI-PJu" firstAttribute="centerY" secondItem="DfJ-vt-cdQ" secondAttribute="centerY" id="TK6-kT-7d1"/>
-                            <constraint firstItem="dd0-m8-uLP" firstAttribute="top" secondItem="ZlD-tI-PJu" secondAttribute="bottom" constant="100" id="XFd-ZE-5yc"/>
-                            <constraint firstItem="dd0-m8-uLP" firstAttribute="trailing" secondItem="TdF-aj-X5n" secondAttribute="trailing" id="YDn-c1-egI"/>
                             <constraint firstItem="ZlD-tI-PJu" firstAttribute="leading" secondItem="TdF-aj-X5n" secondAttribute="leading" constant="155" id="bh6-Ix-hzQ"/>
-                            <constraint firstItem="dd0-m8-uLP" firstAttribute="leading" secondItem="TdF-aj-X5n" secondAttribute="leading" id="cJo-0k-Lv0"/>
+                            <constraint firstItem="GgX-b7-gwU" firstAttribute="centerX" secondItem="DfJ-vt-cdQ" secondAttribute="centerX" id="g3M-3t-M8d"/>
+                            <constraint firstItem="TdF-aj-X5n" firstAttribute="bottom" secondItem="GgX-b7-gwU" secondAttribute="bottom" constant="10" id="gpe-fo-Z1q"/>
                             <constraint firstItem="ZlD-tI-PJu" firstAttribute="centerX" secondItem="DfJ-vt-cdQ" secondAttribute="centerX" id="h0x-4T-Bqe"/>
                             <constraint firstItem="ZlD-tI-PJu" firstAttribute="leading" secondItem="TdF-aj-X5n" secondAttribute="leading" constant="10" id="pp6-Uk-DDq"/>
+                            <constraint firstItem="dNL-N5-pzD" firstAttribute="top" secondItem="ZlD-tI-PJu" secondAttribute="bottom" constant="50" id="qHl-4u-4EI"/>
                             <constraint firstItem="TdF-aj-X5n" firstAttribute="trailing" secondItem="ZlD-tI-PJu" secondAttribute="trailing" constant="10" id="r0S-Qv-MFk"/>
-                            <constraint firstItem="TdF-aj-X5n" firstAttribute="trailing" secondItem="WS1-pH-rdg" secondAttribute="trailing" id="xjp-bv-KHp"/>
                             <constraint firstItem="ZlD-tI-PJu" firstAttribute="centerX" secondItem="DfJ-vt-cdQ" secondAttribute="centerX" id="ypw-gI-3y4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TdF-aj-X5n"/>
                     </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="GgX-b7-gwU" id="Eqm-Uh-JlA"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toMain" id="9Dq-Jy-62e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rhK-jn-osv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -228,7 +249,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="whv-J1-v9m" customClass="NewPageView" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5C-Mo-bCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="768" y="98"/>
+            <point key="canvasLocation" x="778" y="70"/>
         </scene>
     </scenes>
 </document>

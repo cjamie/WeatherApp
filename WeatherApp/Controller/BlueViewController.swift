@@ -10,17 +10,23 @@ import UIKit
 
 class BlueViewController: UIViewController {
     
+    @IBAction func celButton(_ sender: UIButton) {
+        GlobalStuff.myTempFormat = TempFormat.Celsius
+        messageLabel.text = "Celsius Selected"
+    }
+    @IBAction func farButton(_ sender: UIButton) {
+        GlobalStuff.myTempFormat = TempFormat.Fahrenheit
+        messageLabel.text = "Fahrenheit Selected"
+    }
+    
+    @IBOutlet weak var messageLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
@@ -33,16 +39,17 @@ class BlueViewController: UIViewController {
         }
     }
     
+    @IBAction func shouldPerformSegue(_ sender: Any) {
+        guard GlobalStuff.myZipCodes.count != 0 else {
+            messageLabel.text = "Hey buddy, go back and pick out a zip code \n👈"
+            return}
+        guard let _ = GlobalStuff.myTempFormat else {
+            messageLabel.text = "You have not selected a format yet!"
+            return}
+        self.performSegue(withIdentifier: "toMain", sender: nil)
+    }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     
 }
 

@@ -14,7 +14,7 @@ class RedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.textLabel?.text = "Hello there! \n\n It looks like your first time using this app. \n\nPlease choose your settings. 👉"
+        self.textLabel?.text = "Hello there new user! \n\n It looks like your first time using this app. \n\nPlease pick our your settings. 👉"
     }
 
     override func didReceiveMemoryWarning() {

@@ -9,14 +9,12 @@
 import UIKit
 
 class NewPageView: UIPageViewController{
-    
-    var myZip = Int()
-    var myFormat = TempType
-    
+        
     //store your viewControllers in a lazy array
     private(set) lazy var pageViewArr:[UIViewController] = {
         return [self.newColoredViewController(color: "Red"), self.newColoredViewController(color: "Green"), self.newColoredViewController(color: "Blue")]
     }()
+    
     
     private func newColoredViewController(color: String) ->UIViewController{
         return UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier:"\(color)ViewController")
