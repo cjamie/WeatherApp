@@ -10,10 +10,11 @@ import UIKit
 
 class RedViewController: UIViewController {
 
+    @IBOutlet weak var textLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.textLabel?.text = "Hello there! \n\n It looks like your first time using this app. \n\nPlease choose your settings. 👉"
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,14 +23,5 @@ class RedViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

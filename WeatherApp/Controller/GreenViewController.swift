@@ -9,10 +9,12 @@
 import UIKit
 
 class GreenViewController: UIViewController {
-    
+    @IBOutlet weak var textLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.textLabel?.text = "please enter in your 5-digit zipcode. "
+
         // Do any additional setup after loading the view.
     }
     

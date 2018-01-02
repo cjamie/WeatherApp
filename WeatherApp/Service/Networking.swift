@@ -28,7 +28,7 @@ enum QueryType{
 //TODO: use this for returning instead of having 2 separate return functions and return types.
 enum WeatherReturn{
     case weather(CityWeather)
-    case forecase(ForecastWeek)
+    case forecast(ForecastWeek)
 }
 
 enum NetworkingError:Error{

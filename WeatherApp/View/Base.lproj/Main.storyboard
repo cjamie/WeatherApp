@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-DemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -23,7 +28,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-174" y="98"/>
+            <point key="canvasLocation" x="2634" y="821"/>
         </scene>
         <!--Red View Controller-->
         <scene sceneID="OxB-cp-Bo0">
@@ -32,13 +37,30 @@
                     <view key="view" contentMode="scaleToFill" id="wk4-kp-izw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="red placeholder" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOr-85-cpg">
+                                <rect key="frame" x="10" y="30" width="355" height="627"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="sOr-85-cpg" firstAttribute="top" secondItem="LgN-Em-P6x" secondAttribute="top" constant="10" id="FkE-6v-KNh"/>
+                            <constraint firstItem="sOr-85-cpg" firstAttribute="leading" secondItem="LgN-Em-P6x" secondAttribute="leading" constant="10" id="aIg-Pc-oTt"/>
+                            <constraint firstItem="LgN-Em-P6x" firstAttribute="bottom" secondItem="sOr-85-cpg" secondAttribute="bottom" constant="10" id="eSo-b3-bgW"/>
+                            <constraint firstItem="LgN-Em-P6x" firstAttribute="trailing" secondItem="sOr-85-cpg" secondAttribute="trailing" constant="10" id="lZX-7e-iDK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LgN-Em-P6x"/>
                     </view>
+                    <connections>
+                        <outlet property="textLabel" destination="sOr-85-cpg" id="9Ai-y1-Q4f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u2I-Gq-Yh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1" y="821"/>
+            <point key="canvasLocation" x="-2.3999999999999999" y="820.83958020989508"/>
         </scene>
         <!--Green View Controller-->
         <scene sceneID="SoX-Z5-bzx">
@@ -47,13 +69,42 @@
                     <view key="view" contentMode="scaleToFill" id="WZO-cr-2xr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter in your zip code" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHW-Ir-iug">
+                                <rect key="frame" x="50" y="187.5" width="275" height="66"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex. 90210" textAlignment="natural" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="kq5-kC-Evs">
+                                <rect key="frame" x="50" y="303.5" width="275" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ywH-lE-e8G"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="MM2-Cr-wr6" firstAttribute="trailing" secondItem="DHW-Ir-iug" secondAttribute="trailing" constant="50" id="8HQ-JU-bvu"/>
+                            <constraint firstItem="kq5-kC-Evs" firstAttribute="leading" secondItem="MM2-Cr-wr6" secondAttribute="leading" constant="50" id="Hob-fw-7TY"/>
+                            <constraint firstItem="kq5-kC-Evs" firstAttribute="centerY" secondItem="WZO-cr-2xr" secondAttribute="centerY" id="S5Y-iy-afg"/>
+                            <constraint firstItem="DHW-Ir-iug" firstAttribute="leading" secondItem="MM2-Cr-wr6" secondAttribute="leading" constant="50" id="Sd7-wk-4W9"/>
+                            <constraint firstItem="kq5-kC-Evs" firstAttribute="centerX" secondItem="WZO-cr-2xr" secondAttribute="centerX" id="YcI-QS-9uo"/>
+                            <constraint firstItem="MM2-Cr-wr6" firstAttribute="trailing" secondItem="kq5-kC-Evs" secondAttribute="trailing" constant="50" id="Zx7-LT-5ss"/>
+                            <constraint firstItem="kq5-kC-Evs" firstAttribute="top" secondItem="DHW-Ir-iug" secondAttribute="bottom" constant="50" id="xVf-d9-xg7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="MM2-Cr-wr6"/>
                     </view>
+                    <connections>
+                        <outlet property="textLabel" destination="DHW-Ir-iug" id="oel-Sm-nUh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vKL-hp-8aN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="779" y="821"/>
+            <point key="canvasLocation" x="778.39999999999998" y="820.83958020989508"/>
         </scene>
         <!--Blue View Controller-->
         <scene sceneID="oCq-sF-Krh">
@@ -62,18 +113,32 @@
                     <view key="view" contentMode="scaleToFill" id="DfJ-vt-cdQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlD-tI-PJu">
+                                <rect key="frame" x="101" y="511" width="173" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
+                                <state key="normal" title="Finish">
+                                    <color key="titleColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="2gF-6H-jJG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="TdF-aj-X5n"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rhK-jn-osv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1571" y="821"/>
+            <point key="canvasLocation" x="1570.4000000000001" y="820.83958020989508"/>
         </scene>
-        <!--Red Page View-->
+        <!--New Page View-->
         <scene sceneID="HzS-Ca-TMC">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="whv-J1-v9m" customClass="RedPageView" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="whv-J1-v9m" customClass="NewPageView" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5C-Mo-bCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="768" y="98"/>
