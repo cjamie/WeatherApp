@@ -23,8 +23,6 @@ enum QueryType{
     case zipCode(Int) //{zipCode&countryCode}
 }
 
-
-
 //TODO: use this for returning instead of having 2 separate return functions and return types.
 enum WeatherReturn{
     case weather(CityWeather)

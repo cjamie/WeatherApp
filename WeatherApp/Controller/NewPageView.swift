@@ -23,18 +23,19 @@ class NewPageView: UIPageViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         print("pageViewController")
+
         dataSource = self
         
         //displays the first view controller (red)
         if let firstViewController = pageViewArr.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
+        print("after pageVDL")
     }
 }
 
 extension NewPageView: UIPageViewControllerDataSource{
 
-    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = pageViewArr.index(of: viewController) else {return nil}
         let previousIndex = viewControllerIndex - 1
@@ -52,6 +53,7 @@ extension NewPageView: UIPageViewControllerDataSource{
         return pageViewArr[nextIndex]
     }
 }
+//reference: https://spin.atomicobject.com/2015/12/23/swift-uipageviewcontroller-tutorial/
 
 
 

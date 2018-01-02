@@ -28,17 +28,17 @@ struct MultipleCityWeather: Codable{
 
 struct CityWeather: Codable{ 
     var coord: Coord
-    var weather: [Weather]
-    var base: String
-    var main: Main
+    var weather: [Weather]?
+    var base: String?
+    var main: Main?
     var visibility: Int? //does not exist for lon/lat
-    var wind: Wind
+    var wind: Wind?
     var dt: Int//maybe this is a Long
-    var clouds: Clouds
-    var sys: Sys
-    var id: Int
-    var name: String
-    var cod: Int
+    var clouds: Clouds?
+    var sys: Sys?
+    var id: Int?
+    var name: String?
+    var cod: Int?
 }
 
 struct Coord: Codable{
@@ -62,7 +62,8 @@ struct Main: Codable{
     //for long/lat
     var sea_level: Double?
     var grnd_level: Double?
-    var temp_kf:Double
+    var temp_kf:Double?
+    
 }
 
 struct Wind: Codable{
@@ -81,5 +82,7 @@ struct Sys: Codable{
     var country: String?
     var sunrise: Int?
     var sunset: Int?
-    var pod: String
+    var pod: String?
+    
+
 }

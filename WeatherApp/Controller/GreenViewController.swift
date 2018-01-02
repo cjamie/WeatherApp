@@ -16,20 +16,26 @@ class GreenViewController: UIViewController {
         
         guard let tempInput = inputText.text else{return}
         guard let temp = Int(tempInput) else {
-            responseLabel.text = "Invalid input"
+            responseLabel.text = "Invalid input\n\nPlease try again"
             return
         }
-        if 501...99950 ~= temp {
+        
+        if GlobalStuff.myZipCodes.contains(temp){
+            responseLabel.text = "Zip code \(temp) already exists!\n\nPlease try a different one"
+        }else if 501...99950 ~= temp {
             GlobalStuff.myZipCodes.append(temp)
-            responseLabel.text = "seems... ok 👍"
+            responseLabel.text = "seems... ok 👍\n\(temp) added"
         }else{
-            responseLabel.text = "Out of range!"
+            responseLabel.text = "Out of range!\n\nPlease try again"
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.textLabel?.text = "Please enter in your 5-digit zipcode. "
-        // Do any additional setup after loading the view.
+        inputText.becomeFirstResponder()
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,24 +43,5 @@ class GreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
-//
-//  GreenViewController.swift
-//  WeatherApp
-//
-//  Created by Admin on 1/1/18.
-//  Copyright © 2018 Jamie Chu. All rights reserved.
-//
 
-import Foundation

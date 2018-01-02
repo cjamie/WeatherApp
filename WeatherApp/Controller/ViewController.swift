@@ -41,10 +41,22 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("view did load")
+        
+        displayPageViews()
+        
         getForecast()
-        //        getWeather()
+        getWeather()
     }
-    
+    func displayPageViews(){
+        let userDefaults = UserDefaults.standard
+        let condition = userDefaults.bool(forKey: "WalkthroughComplete")
+        print(condition)
+        if condition{
+            if let NewPageView = storyboard?.instantiateViewController(withIdentifier: "NewPageView"){
+                present(NewPageView, animated: true, completion: nil)
+            }
+        }
+    }
     
     func getForecast(){
         let tempNet = Networking()
@@ -54,6 +66,7 @@ class ViewController: UIViewController {
             guard error == nil else{print(error!.localizedDescription);return}
             guard let weatherTemp = forecastWeek else {return}
             print(weatherTemp)
+//            print("forecast Successfully downloaded")
         }
     }
     
@@ -66,8 +79,9 @@ class ViewController: UIViewController {
         
         tempNet.getWeather(by: .cityId(2172797)) { (cityWeather, error) in
             guard error == nil else{print(error!.localizedDescription);return}            
-            guard let weatherTemp = cityWeather else {return}
-            print(weatherTemp)
+//            guard let weatherTemp = cityWeather else {return}
+            guard let _ = cityWeather else {return}
+            print("cityWeather Successfully downloaded")
         }
         
         //        tempNet.getWeather(by: .geographicCooridinates(3.2, 55.2)) { (cityWeather, error) in
