@@ -45,14 +45,42 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoreLocationData" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJb-9E-iAo">
+                                <rect key="frame" x="0.0" y="577" width="138" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="u1L-mY-fR2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjE-qi-E6D">
+                                <rect key="frame" x="138" y="627" width="227" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="updateLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bRX-na-1RR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="uJb-9E-iAo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GqE-Xr-JRK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mjE-qi-E6D" secondAttribute="trailing" constant="10" id="Lgu-3l-6H6"/>
+                            <constraint firstItem="mjE-qi-E6D" firstAttribute="leading" secondItem="uJb-9E-iAo" secondAttribute="trailing" id="Ma3-P7-wXw"/>
+                            <constraint firstItem="mjE-qi-E6D" firstAttribute="leading" secondItem="uJb-9E-iAo" secondAttribute="trailing" id="PBY-tN-u45"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mjE-qi-E6D" secondAttribute="bottom" constant="10" id="dac-yR-Sef"/>
+                            <constraint firstItem="uJb-9E-iAo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mOK-iN-Dw4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uJb-9E-iAo" secondAttribute="bottom" constant="30" id="nH2-He-NZ3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="coreLocationText" destination="uJb-9E-iAo" id="dpP-y9-tji"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2632.5" y="820.5"/>
+            <point key="canvasLocation" x="2631.1999999999998" y="819.94002998500753"/>
         </scene>
         <!--Red View Controller-->
         <scene sceneID="OxB-cp-Bo0">

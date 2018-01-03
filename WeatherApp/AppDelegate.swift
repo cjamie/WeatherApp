@@ -8,14 +8,18 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+//    var locationManager = CLLocationManager()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+//        locationManager.requestWhenInUseAuthorization()
+
         let userDefaults = UserDefaults.standard
         
         window = UIWindow(frame: UIScreen.main.bounds)

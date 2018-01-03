@@ -34,23 +34,36 @@ extension TempType{
 
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController   {
     var myCityWeather:CityWeather?
     var myForecastWeek:ForecastWeek?
     
-    var locationManager:CLLocationManager!
+    @IBOutlet weak var coreLocationText: UILabel!
+
+    @IBAction func updateLocation(_ sender: Any) {
+        startUpdatingLocation()
+    }
+    
+    var locationManager: CLLocationManager?
+    //lets make this a computed property
+    var lastLocation:CLLocation?{
+        didSet {
+            //updating labels
+            coreLocationText.text = "Location Lon Lat: \(lastLocation?.coordinate.latitude ?? 999)"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("view did load")
-//        view.backgroundColor = .orange
-
+        //        view.backgroundColor = .orange
+        
         initialize()
         getUserDefaultValues()
         getForecast()
         getWeather()
-
+        
     }
     
     func getForecast(){
@@ -60,7 +73,7 @@ class ViewController: UIViewController {
             print("forecast completionHandler")
             guard error == nil else{print(error!.localizedDescription);return}
             guard let _ = forecastWeek else {return}
-//            print(weatherTemp)
+            //            print(weatherTemp)
             print("forecast Successfully downloaded")
         }
     }
@@ -70,7 +83,7 @@ class ViewController: UIViewController {
         print("printing user defaults")
         print(userDefaults.bool(forKey: "WalkthroughComplete"))
         print(userDefaults.integer(forKey: "userZip"))
-
+        
         print(userDefaults.object(forKey: "CelsiusOrFarenheit")!)
     }
     
@@ -96,11 +109,59 @@ class ViewController: UIViewController {
 }
 
 typealias CoreLocationSupport = ViewController
-extension CoreLocationSupport{
+extension CoreLocationSupport: CLLocationManagerDelegate{
     func initialize(){
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
+        locationManager = CLLocationManager() //instantiation transferred to app delegate
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyKilometer
+        checkCoreLocationPermission()
+        print("before")
+        self.startUpdatingLocation()
+//        startUpdatingLocation()
+        print("my core location infomraiton:")
+        print(lastLocation?.coordinate.latitude ?? "latitude is nil")
+        print(lastLocation?.coordinate.longitude ?? "longitude is nil")
+        
     }
+    
+    
+    func checkCoreLocationPermission(){
+        let authStatus = CLLocationManager.authorizationStatus()
+        
+        switch authStatus{
+        case .authorizedWhenInUse:
+            locationManager?.startUpdatingLocation()
+        case .notDetermined:
+            locationManager?.requestWhenInUseAuthorization()
+        case .restricted:
+            //TODO: lets add an alert here
+            print("sorry, you are unauthorized to use core location")
+        default:
+            return
+        }
+    }
+
+    
+    func startUpdatingLocation(){
+        locationManager?.startUpdatingLocation()
+    }
+
+    
+    //stop updating location to conserve battery life
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("in did update locations")
+        guard let last = locations.last else{print("can't spy"); return}
+        lastLocation = last
+        locationManager?.stopUpdatingLocation()
+    }
+    
+    
+    //func from Alfonso's example
+    //strictly for doing updates every _ seconds.
+    static func delay(for seconds:Double,action:@escaping ()->()){
+        DispatchQueue.global().asyncAfter(deadline: .now() + seconds, execute: action)
+    }
+    
     
 }
 
