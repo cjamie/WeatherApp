@@ -8,7 +8,8 @@
 
 import Foundation
 
-enum TempFormat{
+//should have rawValue is still itself. they are stored into userDefaults as a preference parameter
+enum TempFormat:String{
     case Celsius
     case Fahrenheit
 }

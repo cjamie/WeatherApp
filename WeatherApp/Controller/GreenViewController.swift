@@ -25,11 +25,13 @@ class GreenViewController: UIViewController {
         }
         
         if 501...99950 ~= temp {
-            if userDefaults.object(forKey: "userZip") != nil {
-                responseLabel.text = "default zipcode changed to \(temp)"
-            }else{
-                responseLabel.text = "seems... ok 👍\n\(temp) added"
-            }
+            responseLabel.text = (userDefaults.object(forKey: "userZip") != nil) ? "default zipcode changed to \(temp)" : "seems... ok 👍\n\(temp) added"
+            
+//            if userDefaults.object(forKey: "userZip") != nil {
+//                responseLabel.text = "default zipcode changed to \(temp)"
+//            }else{
+//                responseLabel.text = "seems... ok 👍\n\(temp) added"
+//            }
             userDefaults.set(temp, forKey: "userZip") //assign an int to userZip
 
         }else{
@@ -44,9 +46,11 @@ class GreenViewController: UIViewController {
     func initalize(){
         print("green VDL")
         self.textLabel?.text = "Please enter in your 5-digit zipcode. "
+        if userDefaults.object(forKey: "userZip") != nil {
+            let temp = userDefaults.integer(forKey: "userZip")
+            responseLabel.text = "Your default zip code is currently \(temp)"
+        }
         self.inputText.delegate = self
-        
-        //        inputText.becomeFirstResponder()
     }
     
     
@@ -54,8 +58,6 @@ class GreenViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
     
 }
 typealias FirstResponderFunctions = GreenViewController

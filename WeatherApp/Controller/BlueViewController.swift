@@ -12,11 +12,12 @@ class BlueViewController: UIViewController {
     let userDefaults = UserDefaults.standard
 
     @IBAction func celButton(_ sender: UIButton) {
-        GlobalStuff.myTempFormat = TempFormat.Celsius
+        
+        userDefaults.set(TempFormat.Celsius.rawValue, forKey: "CelsiusOrFarenheit")
         messageLabel.text = "Celsius Selected"
     }
     @IBAction func farButton(_ sender: UIButton) {
-        GlobalStuff.myTempFormat = TempFormat.Fahrenheit
+        userDefaults.set(TempFormat.Fahrenheit.rawValue, forKey: "CelsiusOrFarenheit")
         messageLabel.text = "Fahrenheit Selected"
     }
     
@@ -25,16 +26,15 @@ class BlueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        userDefaults.setValue(false, forKey: "WalkthroughComplete")
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier == "toMain"{
             guard let _ = segue.destination as? ViewController else {return}
-            
-//            userDefaults.setValue(true, forKey: "WalkthroughComplete")
+            userDefaults.setValue(true, forKey: "WalkthroughComplete")
 //            self.dismiss(animated: true, completion: nil)
         }
     }
@@ -42,14 +42,9 @@ class BlueViewController: UIViewController {
     @IBAction func shouldPerformSegue(_ sender: Any) {
         guard userDefaults.object(forKey: "userZip") != nil else{
             messageLabel.text = "Hey buddy, go back and pick out a zip code \n👈"
-            return}
-        guard let _ = GlobalStuff.myTempFormat else {
-            messageLabel.text = "You have not selected a format yet!"
-            return}
+            return
+        }
         self.performSegue(withIdentifier: "toMain", sender: nil)
     }
-    
-
-    
 }
 

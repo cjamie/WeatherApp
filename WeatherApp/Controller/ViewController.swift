@@ -42,18 +42,22 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         print("view did load")
         
-        displayPageViews()
-        
-        getForecast()
-        getWeather()
+        displayPageViews {
+            self.getForecast()
+            self.getWeather()
+        }
+
     }
-    func displayPageViews(){
+    func displayPageViews(completion: @escaping()->()){
         let userDefaults = UserDefaults.standard
         let condition = userDefaults.bool(forKey: "WalkthroughComplete")
         print(condition)
-        if condition{
+        if !condition{
             if let NewPageView = storyboard?.instantiateViewController(withIdentifier: "NewPageView"){
+                print("presenting page views?")
                 present(NewPageView, animated: true, completion: nil)
+            }else{
+                print("couldNotPass")
             }
         }
     }
@@ -65,8 +69,8 @@ class ViewController: UIViewController {
             print("forecast completionHandler")
             guard error == nil else{print(error!.localizedDescription);return}
             guard let weatherTemp = forecastWeek else {return}
-            print(weatherTemp)
-//            print("forecast Successfully downloaded")
+//            print(weatherTemp)
+            print("forecast Successfully downloaded")
         }
     }
     
