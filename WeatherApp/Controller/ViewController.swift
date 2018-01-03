@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 enum TempType{
     case Celsius(Double)
@@ -37,29 +38,19 @@ class ViewController: UIViewController {
     var myCityWeather:CityWeather?
     var myForecastWeek:ForecastWeek?
     
+    var locationManager:CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("view did load")
 //        view.backgroundColor = .orange
 
+        initialize()
         getUserDefaultValues()
         getForecast()
         getWeather()
 
-    }
-    func displayPageViews(completion: @escaping()->()){
-        let userDefaults = UserDefaults.standard
-        let condition = userDefaults.bool(forKey: "WalkthroughComplete")
-        print(condition)
-        if !condition{
-            if let NewPageView = storyboard?.instantiateViewController(withIdentifier: "NewPageView"){
-                print("presenting page views?")
-                present(NewPageView, animated: true, completion: nil)
-            }else{
-                print("couldNotPass")
-            }
-        }
     }
     
     func getForecast(){
@@ -68,7 +59,7 @@ class ViewController: UIViewController {
         tempNet.getForcastWeek(by: .zipCode(90210)) { (forecastWeek, error) in
             print("forecast completionHandler")
             guard error == nil else{print(error!.localizedDescription);return}
-            guard let weatherTemp = forecastWeek else {return}
+            guard let _ = forecastWeek else {return}
 //            print(weatherTemp)
             print("forecast Successfully downloaded")
         }
@@ -104,4 +95,12 @@ class ViewController: UIViewController {
     
 }
 
+typealias CoreLocationSupport = ViewController
+extension CoreLocationSupport{
+    func initialize(){
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+    }
+    
+}
 

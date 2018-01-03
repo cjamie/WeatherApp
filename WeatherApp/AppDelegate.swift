@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        //checking my WalkthroughComplete in userDefaults
+        //WalkthroughComplete in userDefaults decides the rootViewController
         if userDefaults.bool(forKey: "WalkthroughComplete") == true {
             let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WeatherController") as UIViewController
             window?.rootViewController = viewController
