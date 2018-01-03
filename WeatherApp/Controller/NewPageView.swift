@@ -15,7 +15,6 @@ class NewPageView: UIPageViewController{
         return [self.newColoredViewController(color: "Red"), self.newColoredViewController(color: "Green"), self.newColoredViewController(color: "Blue")]
     }()
     
-    
     private func newColoredViewController(color: String) ->UIViewController{
         return UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier:"\(color)ViewController")
     }
@@ -23,9 +22,7 @@ class NewPageView: UIPageViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         print("pageViewController")
-
         dataSource = self
-        
         //displays the first view controller (red)
         if let firstViewController = pageViewArr.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
@@ -53,6 +50,7 @@ extension NewPageView: UIPageViewControllerDataSource{
         return pageViewArr[nextIndex]
     }
 }
+
 //reference: https://spin.atomicobject.com/2015/12/23/swift-uipageviewcontroller-tutorial/
 
 

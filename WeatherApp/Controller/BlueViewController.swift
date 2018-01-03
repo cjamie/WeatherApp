@@ -9,7 +9,8 @@
 import UIKit
 
 class BlueViewController: UIViewController {
-    
+    let userDefaults = UserDefaults.standard
+
     @IBAction func celButton(_ sender: UIButton) {
         GlobalStuff.myTempFormat = TempFormat.Celsius
         messageLabel.text = "Celsius Selected"
@@ -33,14 +34,13 @@ class BlueViewController: UIViewController {
         if segue.identifier == "toMain"{
             guard let _ = segue.destination as? ViewController else {return}
             
-            let userDefaults = UserDefaults.standard
-            userDefaults.setValue(true, forKey: "WalkthroughComplete")
+//            userDefaults.setValue(true, forKey: "WalkthroughComplete")
 //            self.dismiss(animated: true, completion: nil)
         }
     }
     
     @IBAction func shouldPerformSegue(_ sender: Any) {
-        guard GlobalStuff.myZipCodes.count != 0 else {
+        guard userDefaults.object(forKey: "userZip") != nil else{
             messageLabel.text = "Hey buddy, go back and pick out a zip code \n👈"
             return}
         guard let _ = GlobalStuff.myTempFormat else {

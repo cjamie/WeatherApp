@@ -18,7 +18,7 @@ enum TempFormat{
 class GlobalStuff{
     static let bearer = "b6907d289e10d714a6e88b30761fae22"
 //    static var CityWeatherCache = [WeatherMethod:CityWeather]() //might not need to cache in this assignment... also, cityweather is not hashable so need NSDictionary
-    static var myZipCodes = [Int]()
+//    static var myZipCodes = [Int]()
     static var myTempFormat:TempFormat?
 
 }

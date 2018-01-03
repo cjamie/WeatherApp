@@ -12,7 +12,11 @@ class GreenViewController: UIViewController {
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var inputText: UITextField!
     @IBOutlet weak var responseLabel: UILabel!
+    
+    let userDefaults = UserDefaults.standard
+    
     @IBAction func validateZip(_ sender: Any) {
+        inputText.resignFirstResponder()
         
         guard let tempInput = inputText.text else{return}
         guard let temp = Int(tempInput) else {
@@ -20,28 +24,54 @@ class GreenViewController: UIViewController {
             return
         }
         
-        if GlobalStuff.myZipCodes.contains(temp){
-            responseLabel.text = "Zip code \(temp) already exists!\n\nPlease try a different one"
-        }else if 501...99950 ~= temp {
-            GlobalStuff.myZipCodes.append(temp)
-            responseLabel.text = "seems... ok 👍\n\(temp) added"
+        if 501...99950 ~= temp {
+            if userDefaults.object(forKey: "userZip") != nil {
+                responseLabel.text = "default zipcode changed to \(temp)"
+            }else{
+                responseLabel.text = "seems... ok 👍\n\(temp) added"
+            }
+            userDefaults.set(temp, forKey: "userZip") //assign an int to userZip
+
         }else{
             responseLabel.text = "Out of range!\n\nPlease try again"
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.textLabel?.text = "Please enter in your 5-digit zipcode. "
-        inputText.becomeFirstResponder()
-        
-        
-        
+        initalize()
     }
+    
+    func initalize(){
+        print("green VDL")
+        self.textLabel?.text = "Please enter in your 5-digit zipcode. "
+        self.inputText.delegate = self
+        
+        //        inputText.becomeFirstResponder()
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
 }
-
+typealias FirstResponderFunctions = GreenViewController
+extension FirstResponderFunctions: UITextFieldDelegate{
+    
+    //for when i touch outside of the keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.view.endEditing(true)
+    }
+    
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+}
