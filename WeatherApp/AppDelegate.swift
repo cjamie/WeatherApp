@@ -16,18 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
+        let userDefaults = UserDefaults.standard
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        window?.rootViewController = NewPageView()
-        
-        
-        //        let mainStoryboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
-        
-        
-        
-        // Override point for customization after application launch.
+        //checking my WalkthroughComplete in userDefaults
+        if userDefaults.bool(forKey: "WalkthroughComplete") == true {
+            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WeatherController") as UIViewController
+            window?.rootViewController = viewController
+        }else{
+            window?.rootViewController = NewPageView()
+        }
         return true
     }
 

@@ -44,7 +44,15 @@ class BlueViewController: UIViewController {
             messageLabel.text = "Hey buddy, go back and pick out a zip code \n👈"
             return
         }
-        self.performSegue(withIdentifier: "toMain", sender: nil)
+        userDefaults.setValue(true, forKey: "WalkthroughComplete")
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WeatherController") as UIViewController
+        self.present(viewController, animated: false, completion: nil)
+        
+
+        
+        
+        
+//        self.performSegue(withIdentifier: "toMain", sender: nil)
     }
 }
 

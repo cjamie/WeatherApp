@@ -41,11 +41,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("view did load")
-        
-        displayPageViews {
-            self.getForecast()
-            self.getWeather()
-        }
+//        view.backgroundColor = .orange
+
+        getUserDefaultValues()
+        getForecast()
+        getWeather()
 
     }
     func displayPageViews(completion: @escaping()->()){
@@ -74,16 +74,21 @@ class ViewController: UIViewController {
         }
     }
     
+    func getUserDefaultValues(){
+        let userDefaults = UserDefaults.standard
+        print("printing user defaults")
+        print(userDefaults.bool(forKey: "WalkthroughComplete"))
+        print(userDefaults.integer(forKey: "userZip"))
+
+        print(userDefaults.object(forKey: "CelsiusOrFarenheit")!)
+    }
     
     
-    
-    //unclogs my viewDidLoad for now
     func getWeather(){
         let tempNet = Networking()
         
         tempNet.getWeather(by: .cityId(2172797)) { (cityWeather, error) in
             guard error == nil else{print(error!.localizedDescription);return}            
-//            guard let weatherTemp = cityWeather else {return}
             guard let _ = cityWeather else {return}
             print("cityWeather Successfully downloaded")
         }
