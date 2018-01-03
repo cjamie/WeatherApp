@@ -26,12 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         //WalkthroughComplete in userDefaults decides the rootViewController
-        if userDefaults.bool(forKey: "WalkthroughComplete") == true {
-            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WeatherController") as UIViewController
-            window?.rootViewController = viewController
-        }else{
+//        if userDefaults.bool(forKey: "WalkthroughComplete") == true {
+//            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WeatherController") as UIViewController
+//            window?.rootViewController = viewController
+//        }else{
             window?.rootViewController = NewPageView()
-        }
+//        }
         return true
     }
 

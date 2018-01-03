@@ -47,9 +47,10 @@ class ViewController: UIViewController   {
     var locationManager: CLLocationManager?
     //lets make this a computed property
     var lastLocation:CLLocation?{
+        //convenient updating
         didSet {
             //updating labels
-            coreLocationText.text = "Location Lon Lat: \(lastLocation?.coordinate.latitude ?? 999)"
+            coreLocationText.text = "Location Lon Lat: \n\(lastLocation?.coordinate.latitude ?? 9001) \(lastLocation?.coordinate.longitude ?? 9001)"
         }
     }
     
@@ -80,10 +81,9 @@ class ViewController: UIViewController   {
     
     func getUserDefaultValues(){
         let userDefaults = UserDefaults.standard
-        print("printing user defaults")
+        print("displaying user defaults...")
         print(userDefaults.bool(forKey: "WalkthroughComplete"))
         print(userDefaults.integer(forKey: "userZip"))
-        
         print(userDefaults.object(forKey: "CelsiusOrFarenheit")!)
     }
     
@@ -113,15 +113,10 @@ extension CoreLocationSupport: CLLocationManagerDelegate{
     func initialize(){
         locationManager = CLLocationManager() //instantiation transferred to app delegate
         locationManager?.delegate = self
-        locationManager?.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager?.desiredAccuracy = kCLLocationAccuracyKilometer
         checkCoreLocationPermission()
-        print("before")
         self.startUpdatingLocation()
-//        startUpdatingLocation()
-        print("my core location infomraiton:")
-        print(lastLocation?.coordinate.latitude ?? "latitude is nil")
-        print(lastLocation?.coordinate.longitude ?? "longitude is nil")
-        
     }
     
     
@@ -130,7 +125,7 @@ extension CoreLocationSupport: CLLocationManagerDelegate{
         
         switch authStatus{
         case .authorizedWhenInUse:
-            locationManager?.startUpdatingLocation()
+            startUpdatingLocation()
         case .notDetermined:
             locationManager?.requestWhenInUseAuthorization()
         case .restricted:
@@ -140,25 +135,26 @@ extension CoreLocationSupport: CLLocationManagerDelegate{
             return
         }
     }
-
     
     func startUpdatingLocation(){
         locationManager?.startUpdatingLocation()
     }
 
-    
     //stop updating location to conserve battery life
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("in did update locations")
-        guard let last = locations.last else{print("can't spy"); return}
+        print("updating locations...")
+        guard let last = locations.last else{print("can't update"); return}
         lastLocation = last
+        print(last.coordinate.longitude)
+        print(last.coordinate.latitude)
+
         locationManager?.stopUpdatingLocation()
     }
     
     
     //func from Alfonso's example
-    //strictly for doing updates every _ seconds.
-    static func delay(for seconds:Double,action:@escaping ()->()){
+    //TODO: implement this into project
+    func delay(for seconds:Double,action:@escaping ()->()){
         DispatchQueue.global().asyncAfter(deadline: .now() + seconds, execute: action)
     }
     
