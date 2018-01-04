@@ -25,10 +25,10 @@ enum TempType{
 
 extension TempType{
     func KelToCel(forKel temp:Double)->Double{
-        return temp-273.15
+        return round(1000*(temp-273.15))/1000
     }
     func KelToFar(forKel temp:Double)->Double{
-        return 9*(temp - 273.15)/5 + 32
+        return round(1000*9*(temp - 273.15)/5 + 32)/1000
     }
 }
 
@@ -37,7 +37,11 @@ class ViewController: UIViewController   {
     var myCityWeather:CityWeather?{
         didSet {
             wCityLabel.text = myCityWeather?.name
-            wTempLabel.text = "\(myCityWeather?.main?.temp ?? 999999999)°"
+            wTempLabel.text = getTempFormatted(kelvinTemp: (myCityWeather?.main?.temp)!)
+            
+            wDescLabel.text = String(describing: myCityWeather?.weather?.description)
+            wDayDateLabel.text = date_IntToString(forUnixTime: (myCityWeather?.dt)!) //TODO: the day
+            wLowHighLabel.text = "\(myCityWeather?.main?.temp_min ?? -999) \(myCityWeather?.main?.temp_max ?? -999)"
         }
     }
 
@@ -191,14 +195,17 @@ extension privateHelperFunctions{
         return dateFormatter.string(from: date as Date)
     }
     
-    //takes in the userDefaults preference and a kelvinTemp:Double and returns temp
-    func getTempFormatted(tempFormat:TempFormat, kelvinTemp:Double)->Double{
-
+    //TODO: TypeFormat enum used improperly. MUST CHANGE
+    func getTempFormatted(kelvinTemp:Double)->String{
+        let tempFormat = userDefaults.string(forKey: "CelsiusOrFarenheit")
+        
         switch tempFormat{
-        case .Fahrenheit:
-            return TempType.Fahrenheit(kelvinTemp).Value
-        case .Celsius:
-            return TempType.Celsius(kelvinTemp).Value
+        case TempFormat.Fahrenheit.rawValue?:
+            return "\(TempType.Fahrenheit(kelvinTemp).Value)°F"
+        case TempFormat.Celsius.rawValue?:
+            return "\(TempType.Celsius(kelvinTemp).Value)°C"
+        default:
+            return "-"// consider throwing error instead of returning dummy value
         }
         
     }
