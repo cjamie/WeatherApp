@@ -28,7 +28,7 @@ extension TempType{
         return temp-273.15
     }
     func KelToFar(forKel temp:Double)->Double{
-        return 9/5*(temp - 273.15) + 32
+        return 9*(temp - 273.15)/5 + 32
     }
 }
 
@@ -36,7 +36,9 @@ extension TempType{
 class ViewController: UIViewController   {
     var myCityWeather:CityWeather?
     var myForecastWeek:ForecastWeek?
+    let userDefaults = UserDefaults.standard
     
+    @IBOutlet weak var backgroundColorView: UIView!
     @IBOutlet weak var coreLocationText: UILabel!
     @IBAction func updateLocation(_ sender: Any) {
         startUpdatingLocation()
@@ -48,7 +50,7 @@ class ViewController: UIViewController   {
         //convenient updating
         didSet {
             //updating labels
-            coreLocationText.text = "Location Lon Lat: \n\(lastLocation?.coordinate.latitude ?? 9001) \(lastLocation?.coordinate.longitude ?? 9001)"
+            coreLocationText.text = "Location Lon Lat: \n\(lastLocation?.coordinate.longitude ?? 9001) \(lastLocation?.coordinate.latitude ?? 9001)"
         }
     }
     
@@ -58,10 +60,12 @@ class ViewController: UIViewController   {
         print("view did load")
         //        view.backgroundColor = .orange
         
-        initialize()
-        getUserDefaultValues()
-        getForecast()
-        getWeather()
+        initializeCL()
+        print(getTempFormatted(tempFormat: TempFormat.Fahrenheit, temp: 43.22))
+        
+//        getUserDefaultValues()
+//        getForecast()
+//        getWeather()
         
     }
     
@@ -78,7 +82,7 @@ class ViewController: UIViewController   {
     }
     
     func getUserDefaultValues(){
-        let userDefaults = UserDefaults.standard
+//        let userDefaults = UserDefaults.standard
         print("displaying user defaults...")
         print(userDefaults.bool(forKey: "WalkthroughComplete"))
         print(userDefaults.integer(forKey: "userZip"))
@@ -105,9 +109,9 @@ class ViewController: UIViewController   {
     }
 }
 
-typealias CoreLocationSupport = ViewController
+private typealias CoreLocationSupport = ViewController
 extension CoreLocationSupport: CLLocationManagerDelegate{
-    func initialize(){
+    func initializeCL(){
         locationManager = CLLocationManager() //instantiation transferred to app delegate
         locationManager?.delegate = self
 //        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
@@ -145,7 +149,7 @@ extension CoreLocationSupport: CLLocationManagerDelegate{
         print(last.coordinate.longitude)
         print(last.coordinate.latitude)
 
-//        locationManager?.stopUpdatingLocation()
+        locationManager?.stopUpdatingLocation()
     }
     
     
@@ -159,7 +163,7 @@ extension CoreLocationSupport: CLLocationManagerDelegate{
 }
 
 
-typealias privateHelperFunctions = ViewController
+private typealias privateHelperFunctions = ViewController
 extension privateHelperFunctions{
     
     //takes in your unixTime:Int and returns a string of current date
@@ -171,7 +175,48 @@ extension privateHelperFunctions{
         return dateFormatter.string(from: date as Date)
     }
 
+    //takes in the userDefaults preference and a temp and returns temp
+    func getTempFormatted(tempFormat:TempFormat, temp:Double)->Double{
+        switch tempFormat{
+        case .Fahrenheit:
+            return TempType.Fahrenheit(temp).Value
+        case .Celsius:
+            return TempType.Celsius(temp).Value
+        }
+    }
     
-    
+    //takes in a Kelvin value and converts it into a color.
+    //convert to celsius first then compare.
+    func getBackgroundColor(with temp:Double){
+
+        
+        let celTemp = Int(TempType.Celsius(temp).Value)
+        
+        switch celTemp {
+        case let temp where temp < 10:
+            UIView.animate(withDuration: 1, animations: {
+                self.backgroundColorView.backgroundColor = UIColor.red
+            }, completion: nil)
+            
+//            view.backgroundColor = .blue
+        case let temp where temp < 10:
+            view.backgroundColor = .blue
+            
+            
+        case let temp where temp < 10:
+            view.backgroundColor = .blue
+
+        default:
+            return
+        }
+//        if(temp > 10 && temp <= 19){
+//            color='yellow'
+//        }else if(temp > 19 && temp <= 29){
+//            color='green'
+//        }else if(temp > 29){
+//            color='red'
+//        }
+        
+    }
 }
 

@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-// MARK: protocol extensions, enum's application in networking
 
 //TODO: implement for getForcast with enums
 protocol NetworkProtocol {    
@@ -16,6 +15,7 @@ protocol NetworkProtocol {
     func getForcastWeek(by type: QueryType, completion: @escaping (ForecastWeek?, Error?) -> ())
 }
 
+//associated type enums
 enum QueryType{
     case cityName(String) //{cityName, countryCode}
     case cityId(Int)    //{cityID}
@@ -36,7 +36,6 @@ enum NetworkingError:Error{
     case couldNotParseData
 }
 
-
 class Networking{
     
 }
@@ -49,13 +48,13 @@ extension NetworkingFunction: NetworkProtocol{
         var myUrl = String()
         switch type{
         case .cityId(let myId):  //forecast is different from weather.
-            myUrl = "http://samples.openweathermap.org/data/2.5/weather?id=\(myId),DE&appid=\(GlobalStuff.bearer)"
+            myUrl = "http://api.openweathermap.org/data/2.5/weather?id=\(myId)&appid=\(GlobalStuff.bearer)"
         case .cityName(let myName):
-            myUrl = "http://samples.openweathermap.org/data/2.5/weather?q=\(myName)&appid=\(GlobalStuff.bearer)"
+            myUrl = "http://api.openweathermap.org/data/2.5/weather?q=\(myName)&appid=\(GlobalStuff.bearer)"
         case .geographicCooridinates(let lat, let lon):
-            myUrl = "http://samples.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(GlobalStuff.bearer)"
+            myUrl = "http://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(GlobalStuff.bearer)"
         case .zipCode(let myZipCode):
-            myUrl = "http://samples.openweathermap.org/data/2.5/weather?zip=\(myZipCode),us&appid=\(GlobalStuff.bearer)"
+            myUrl = "http://api.openweathermap.org/data/2.5/weather?zip=\(myZipCode),us&appid=\(GlobalStuff.bearer)"
         }
         
         guard let uurl = URL(string:myUrl) else {return}
