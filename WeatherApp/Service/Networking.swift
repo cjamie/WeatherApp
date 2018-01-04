@@ -37,7 +37,23 @@ enum NetworkingError:Error{
 }
 
 class Networking{
-    
+    static func downloadIcon(by icon:String,completion:@escaping(UIImage?,Error?)->()){
+        let myUrl = "http://openweathermap.org/img/w/\(icon).png"
+        guard let uurl = URL(string:myUrl) else {return}
+        Alamofire.request(uurl).response { (dataResponse) in
+            guard dataResponse.error == nil else {
+                completion(nil, dataResponse.error)
+                print(dataResponse.error!.localizedDescription)
+                return
+            }
+            guard let data = dataResponse.data else {
+                completion(nil, NetworkingError.noData)
+                return
+            }
+            guard let image = UIImage(data:data) else {return}//invalid image
+            completion(image, nil)
+        }
+    }
 }
 
 //TODO: change Networking into an enum for .getJson, .post examples
@@ -125,5 +141,7 @@ extension NetworkingFunction: NetworkProtocol{
             }
         }
     }
+    
+
 }
 

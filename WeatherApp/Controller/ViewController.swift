@@ -36,12 +36,12 @@ extension TempType{
 class ViewController: UIViewController   {
     var myCityWeather:CityWeather?{
         didSet {
-            wCityLabel.text = myCityWeather?.name
+            getIcon(by: (myCityWeather?.weather?[0].icon)!)
+            wCityLabel.text = getCityState()
             wTempLabel.text = getTempFormatted(kelvinTemp: (myCityWeather?.main?.temp)!)
-            
-            wDescLabel.text = String(describing: myCityWeather?.weather?.description)
-            wDayDateLabel.text = date_IntToString(forUnixTime: (myCityWeather?.dt)!) //TODO: the day
-            wLowHighLabel.text = "\(myCityWeather?.main?.temp_min ?? -999) \(myCityWeather?.main?.temp_max ?? -999)"
+            wDescLabel.text = getDesc()
+            wDayDateLabel.text = date_IntToString(forUnixTime: (myCityWeather?.dt)!) //TODO: prefix this with "the day"
+            wLowHighLabel.text = "\(getTempFormatted(kelvinTemp: (myCityWeather?.main?.temp_min)!)) \(getTempFormatted(kelvinTemp: (myCityWeather?.main?.temp_max)!))"
         }
     }
 
@@ -56,8 +56,8 @@ class ViewController: UIViewController   {
     @IBOutlet weak var wDescLabel: UILabel!
     @IBOutlet weak var wDayDateLabel: UILabel!
     @IBOutlet weak var wLowHighLabel: UILabel!
-
-
+    @IBOutlet weak var wIconView: UIImageView!
+    
     @IBAction func updateLocation(_ sender: Any) {
         startUpdatingLocation()
     }
@@ -112,6 +112,17 @@ class ViewController: UIViewController   {
         print(userDefaults.object(forKey: "CelsiusOrFarenheit")!)
     }
     
+    func getIcon(by icon:String){
+        Networking.downloadIcon(by: icon) {
+            (image, error) in
+            guard error == nil else{return}
+            guard image != nil else {return}
+            DispatchQueue.main.async {
+                self.wIconView.image = image
+            }
+            
+        }
+    }
     
     func getWeather(){
         let tempNet = Networking()
@@ -210,11 +221,21 @@ extension privateHelperFunctions{
         
     }
     
+    func getDesc()->String{
+        guard let tempArr = myCityWeather?.weather else {return ""}
+        return tempArr[0].description
+    }
+    
+    func getCityState()->String{
+        guard let city = myCityWeather?.name else {return ""}
+        guard let state = myCityWeather?.sys?.country else {return ""}
+        return "\(city), \(state)"
+    }
+    
     //takes in a Kelvin value and converts it into a color.
     //convert to celsius first then compare.
     func setBackgroundColor(with temp:Double){
-        
-        
+
         let celTemp = Int(TempType.Celsius(temp).Value)
         
         if celTemp < 0{

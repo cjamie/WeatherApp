@@ -27,8 +27,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CityName" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UyT-9q-zva">
-                                        <rect key="frame" x="0.0" y="30" width="375" height="26.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <rect key="frame" x="0.0" y="30" width="375" height="25.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -45,17 +45,24 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Short Description" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNa-1x-fVx">
-                                        <rect key="frame" x="0.0" y="115" width="375" height="19.5"/>
+                                        <rect key="frame" x="0.0" y="128.5" width="375" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7A-7T-AX4">
-                                        <rect key="frame" x="0.0" y="66.5" width="375" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <rect key="frame" x="0.0" y="65.5" width="375" height="53"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yoq-I8-A0T">
+                                        <rect key="frame" x="0.0" y="0.0" width="92" height="69"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="5Yf-ul-xSk"/>
+                                            <constraint firstAttribute="height" constant="50" id="H63-om-Fcv"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -149,6 +156,7 @@
                         <outlet property="wCityLabel" destination="UyT-9q-zva" id="Web-7C-OEd"/>
                         <outlet property="wDayDateLabel" destination="t7y-jz-xKn" id="wwK-2v-rHp"/>
                         <outlet property="wDescLabel" destination="UNa-1x-fVx" id="kNW-DK-wvK"/>
+                        <outlet property="wIconView" destination="yoq-I8-A0T" id="Gof-Pj-nyk"/>
                         <outlet property="wLowHighLabel" destination="iwa-cb-P9l" id="LAC-9j-hTl"/>
                         <outlet property="wTempLabel" destination="G7A-7T-AX4" id="0ah-qT-fw0"/>
                     </connections>
