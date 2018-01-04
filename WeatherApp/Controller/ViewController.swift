@@ -65,8 +65,8 @@ class ViewController: UIViewController   {
 //        print(getTempFormatted(tempFormat: TempFormat.Fahrenheit, kelvinTemp: 43.22))
         
 //        getUserDefaultValues()
-        getForecast()
-        //        getWeather()
+//        getForecast()
+                getWeather()
         
     }
     
@@ -98,8 +98,13 @@ class ViewController: UIViewController   {
     
     func getWeather(){
         let tempNet = Networking()
-        
-        tempNet.getWeather(by: .cityId(id:2172797)) { (cityWeather, error) in
+
+        //        tempNet.getWeather(by: .cityId(id:2172797)) {
+        //        tempNet.getWeather(by: .geographicCooridinates(lat: 37.78, lon: -122.4)) {
+        //        tempNet.getWeather(by: .zipCode(zipcode: 90210)) {
+
+        tempNet.getWeather(by: .cityName(city: "Boston")) {
+            (cityWeather, error) in
             guard error == nil else{print(error!.localizedDescription);return}            
             guard let _ = cityWeather else {return}
             print("cityWeather Successfully downloaded")
@@ -221,5 +226,24 @@ extension privateHelperFunctions{
             
         }
     }
+}
+
+typealias privateTableFunctions = ViewController
+extension privateTableFunctions: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "fiveDayCell") as? CustomForecastCell else {
+            fatalError("No cell in tableView")
+        }
+        cell.textLabel?.text = "tempPlaceholder"
+//        . = [indexPath.row].name
+        return cell
+    }
+    
+    
+    
 }
 

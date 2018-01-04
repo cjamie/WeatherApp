@@ -22,6 +22,10 @@ class GlobalStuff{
 //    static var CityWeatherCache = [WeatherMethod:CityWeather]() //might not need to cache in this assignment... also, cityweather is not hashable so need NSDictionary
 //    static var myZipCodes = [Int]()
     static var myTempFormat:TempFormat?
+    
+    //TODO: dictionary for additional zipcodes
+    
+    
 }
 
 

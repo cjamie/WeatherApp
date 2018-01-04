@@ -23,13 +23,12 @@ class NewPageView: UIPageViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("pageViewController")
+        print("pageView")
         dataSource = self
         //displays the first view controller (red)
         if let firstViewController = pageViewArr.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
-        print("after pageVDL")
     }
 }
 
