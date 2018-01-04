@@ -15,6 +15,8 @@ class NewPageView: UIPageViewController{
         return [self.newColoredViewController(color: "Red"), self.newColoredViewController(color: "Green"), self.newColoredViewController(color: "Blue")]
     }()
     
+    
+    //instantiate the 3 viewControllers. 
     private func newColoredViewController(color: String) ->UIViewController{
         return UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier:"\(color)ViewController")
     }

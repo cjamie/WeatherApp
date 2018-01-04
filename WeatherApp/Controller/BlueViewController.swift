@@ -20,7 +20,6 @@ class BlueViewController: UIViewController {
         userDefaults.set(TempFormat.Fahrenheit.rawValue, forKey: "CelsiusOrFarenheit")
         messageLabel.text = "Fahrenheit Selected"
     }
-    
     @IBOutlet weak var messageLabel: UILabel!
     
     
@@ -39,6 +38,8 @@ class BlueViewController: UIViewController {
         }
     }
     
+    
+    //should rename this because it instantiates now rather than segue
     @IBAction func shouldPerformSegue(_ sender: Any) {
         guard userDefaults.object(forKey: "userZip") != nil else{
             messageLabel.text = "Hey buddy, go back and pick out a zip code \n👈"
@@ -47,10 +48,6 @@ class BlueViewController: UIViewController {
         userDefaults.setValue(true, forKey: "WalkthroughComplete")
         let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WeatherController") as UIViewController
         self.present(viewController, animated: false, completion: nil)
-        
-
-        
-        
         
 //        self.performSegue(withIdentifier: "toMain", sender: nil)
     }

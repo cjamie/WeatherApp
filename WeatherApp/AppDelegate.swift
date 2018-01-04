@@ -14,6 +14,7 @@ import CoreLocation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    //TODO: change this to lazy var and reference locationMangager from view controller -
 //    var locationManager = CLLocationManager()
 
 
@@ -25,13 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        //WalkthroughComplete in userDefaults decides the rootViewController
-//        if userDefaults.bool(forKey: "WalkthroughComplete") == true {
-//            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WeatherController") as UIViewController
-//            window?.rootViewController = viewController
-//        }else{
+        //WalkthroughComplete in userDefaults picks the rootViewController
+        if userDefaults.bool(forKey: "WalkthroughComplete") == true {
+            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WeatherController") as UIViewController
+            window?.rootViewController = viewController
+        }else{
             window?.rootViewController = NewPageView()
-//        }
+        }
         return true
     }
 

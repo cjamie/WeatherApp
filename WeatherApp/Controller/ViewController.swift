@@ -33,13 +33,11 @@ extension TempType{
 }
 
 
-
 class ViewController: UIViewController   {
     var myCityWeather:CityWeather?
     var myForecastWeek:ForecastWeek?
     
     @IBOutlet weak var coreLocationText: UILabel!
-
     @IBAction func updateLocation(_ sender: Any) {
         startUpdatingLocation()
     }
@@ -105,7 +103,6 @@ class ViewController: UIViewController   {
         //        }
         
     }
-    
 }
 
 typealias CoreLocationSupport = ViewController
@@ -113,8 +110,8 @@ extension CoreLocationSupport: CLLocationManagerDelegate{
     func initialize(){
         locationManager = CLLocationManager() //instantiation transferred to app delegate
         locationManager?.delegate = self
-        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-//        locationManager?.desiredAccuracy = kCLLocationAccuracyKilometer
+//        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.desiredAccuracy = kCLLocationAccuracyKilometer
         checkCoreLocationPermission()
         self.startUpdatingLocation()
     }
@@ -148,15 +145,32 @@ extension CoreLocationSupport: CLLocationManagerDelegate{
         print(last.coordinate.longitude)
         print(last.coordinate.latitude)
 
-        locationManager?.stopUpdatingLocation()
+//        locationManager?.stopUpdatingLocation()
     }
     
     
-    //func from Alfonso's example
+    //helper func from Alfonso's example
     //TODO: implement this into project
     func delay(for seconds:Double,action:@escaping ()->()){
         DispatchQueue.global().asyncAfter(deadline: .now() + seconds, execute: action)
     }
+    
+    
+}
+
+
+typealias privateHelperFunctions = ViewController
+extension privateHelperFunctions{
+    
+    //takes in your unixTime:Int and returns a string of current date
+    func date_IntToString(forUnixTime time:Int)->String{
+        let date = NSDate(timeIntervalSince1970: TimeInterval(time))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeZone = TimeZone.current
+        return dateFormatter.string(from: date as Date)
+    }
+
     
     
 }
