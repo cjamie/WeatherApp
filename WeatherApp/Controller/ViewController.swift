@@ -63,9 +63,9 @@ class ViewController: UIViewController   {
         initializeCL()
         print(getTempFormatted(tempFormat: TempFormat.Fahrenheit, temp: 43.22))
         
-//        getUserDefaultValues()
-//        getForecast()
-//        getWeather()
+        //        getUserDefaultValues()
+        //        getForecast()
+        //        getWeather()
         
     }
     
@@ -82,7 +82,7 @@ class ViewController: UIViewController   {
     }
     
     func getUserDefaultValues(){
-//        let userDefaults = UserDefaults.standard
+        //        let userDefaults = UserDefaults.standard
         print("displaying user defaults...")
         print(userDefaults.bool(forKey: "WalkthroughComplete"))
         print(userDefaults.integer(forKey: "userZip"))
@@ -114,7 +114,7 @@ extension CoreLocationSupport: CLLocationManagerDelegate{
     func initializeCL(){
         locationManager = CLLocationManager() //instantiation transferred to app delegate
         locationManager?.delegate = self
-//        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        //        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         locationManager?.desiredAccuracy = kCLLocationAccuracyKilometer
         checkCoreLocationPermission()
         self.startUpdatingLocation()
@@ -140,7 +140,7 @@ extension CoreLocationSupport: CLLocationManagerDelegate{
     func startUpdatingLocation(){
         locationManager?.startUpdatingLocation()
     }
-
+    
     //stop updating location to conserve battery life
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("updating locations...")
@@ -148,7 +148,6 @@ extension CoreLocationSupport: CLLocationManagerDelegate{
         lastLocation = last
         print(last.coordinate.longitude)
         print(last.coordinate.latitude)
-
         locationManager?.stopUpdatingLocation()
     }
     
@@ -174,7 +173,7 @@ extension privateHelperFunctions{
         dateFormatter.timeZone = TimeZone.current
         return dateFormatter.string(from: date as Date)
     }
-
+    
     //takes in the userDefaults preference and a temp and returns temp
     func getTempFormatted(tempFormat:TempFormat, temp:Double)->Double{
         switch tempFormat{
@@ -188,35 +187,43 @@ extension privateHelperFunctions{
     //takes in a Kelvin value and converts it into a color.
     //convert to celsius first then compare.
     func getBackgroundColor(with temp:Double){
-
+        
         
         let celTemp = Int(TempType.Celsius(temp).Value)
         
-        switch celTemp {
-        case let temp where temp < 10:
+        if celTemp < 0{
             UIView.animate(withDuration: 1, animations: {
-                self.backgroundColorView.backgroundColor = UIColor.red
+                self.backgroundColorView.backgroundColor = #colorLiteral(red: 0.2107448204, green: 0.6527481474, blue: 1, alpha: 1)
+            }, completion: nil)
+        }else if (celTemp < 25){
+            UIView.animate(withDuration: 1, animations: {
+                self.backgroundColorView.backgroundColor = #colorLiteral(red: 0.2529776096, green: 0.9900103211, blue: 1, alpha: 1)
+            }, completion: nil)
+
+        }else if (celTemp < 50){
+            UIView.animate(withDuration: 1, animations: {
+                self.backgroundColorView.backgroundColor = #colorLiteral(red: 0.8077227024, green: 1, blue: 0.3316666253, alpha: 1)
             }, completion: nil)
             
-//            view.backgroundColor = .blue
-        case let temp where temp < 10:
-            view.backgroundColor = .blue
+        }else if (celTemp < 75){
+            UIView.animate(withDuration: 1, animations: {
+                self.backgroundColorView.backgroundColor = #colorLiteral(red: 0.9884319793, green: 1, blue: 0.1975241086, alpha: 1)
+            }, completion: nil)
             
-            
-        case let temp where temp < 10:
-            view.backgroundColor = .blue
+        }else if (celTemp < 100){
+            UIView.animate(withDuration: 1, animations: {
+                self.backgroundColorView.backgroundColor = #colorLiteral(red: 1, green: 0.5112759825, blue: 0.2702919145, alpha: 1)
+            }, completion: nil)
 
-        default:
-            return
+        }else{
+            UIView.animate(withDuration: 1, animations: {
+                self.backgroundColorView.backgroundColor = #colorLiteral(red: 1, green: 0.06543179506, blue: 0, alpha: 1) //UIColor(red: 1, green: 0.06543179506, blue: 0, alpha: 1)
+
+            }, completion: nil)
+            
         }
-//        if(temp > 10 && temp <= 19){
-//            color='yellow'
-//        }else if(temp > 19 && temp <= 29){
-//            color='green'
-//        }else if(temp > 29){
-//            color='red'
-//        }
         
     }
+    
 }
 
