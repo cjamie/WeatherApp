@@ -15,7 +15,6 @@ struct ForecastWeek:Codable{//not Codable
     //    case ByLonLat(ForecastDayByLonLat)
     //    case ById(ForcaseDayById)
     //}
-
     
     var cod:String
     var message:Double
@@ -97,7 +96,7 @@ struct ForecastWeather:Codable{
 }
 
 struct City:Codable{
-    var id: Int?
+    var id: Int? //does not exist for zip
     var geoname_id:Int?
     var name:String
     var lat:Double?
@@ -106,5 +105,5 @@ struct City:Codable{
     var country:String
     var iso2:String?
     var type:String?
-    var population:Int
+    var population:Int? //does not exist for zipcode
 }

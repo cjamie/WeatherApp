@@ -73,14 +73,16 @@ class ViewController: UIViewController   {
     func getForecast(){
         let tempNet = Networking()
         
-//        tempNet.getForcastWeek(by: .zipCode(90210)) { (forecastWeek, error) in
+//        tempNet.getForcastWeek(by: .zipCode(zipcode: 90210)) {
+//        tempNet.getForcastWeek(by: .cityName(city: "Boston")) {
+//        tempNet.getForcastWeek(by: .geographicCooridinates(lat: 37.78, lon: -122.4)) {
+        tempNet.getForcastWeek(by: .cityId(id: 2172797)) {
 
-        tempNet.getForcastWeek(by: .geographicCooridinates(lat: 37.78, lon: -122.4)) {
             (forecastWeek, error) in
             print("forecast completionHandler")
             guard error == nil else{print(error!.localizedDescription);return}
             guard let forecastTemp = forecastWeek else {return}
-            print(forecastTemp)
+//            print(forecastTemp)
             print("forecast Successfully downloaded")
         }
     }

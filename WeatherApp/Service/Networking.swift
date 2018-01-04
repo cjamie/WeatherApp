@@ -90,8 +90,7 @@ extension NetworkingFunction: NetworkProtocol{
         var myUrl = String()
         switch type{
         case .cityId(let myId):
-            
-            myUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?id=\(myId)&appid=\(GlobalStuff.bearer)"//&lang=\(en)
+            myUrl = "http://api.openweathermap.org/data/2.5/forecast?id=\(myId)&appid=\(GlobalStuff.bearer)"
         case .cityName(let myName):
             myUrl = "http://api.openweathermap.org/data/2.5/forecast?q=\(myName)&appid=\(GlobalStuff.bearer)"
         case .geographicCooridinates(let lat, let lon):
