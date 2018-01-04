@@ -42,6 +42,7 @@ class ViewController: UIViewController   {
     @IBOutlet weak var coreLocationText: UILabel!
     @IBAction func updateLocation(_ sender: Any) {
         startUpdatingLocation()
+        setBackgroundColor(with: 70)
     }
     
     var locationManager: CLLocationManager?
@@ -60,11 +61,11 @@ class ViewController: UIViewController   {
         print("view did load")
         //        view.backgroundColor = .orange
         
-        initializeCL()
-        print(getTempFormatted(tempFormat: TempFormat.Fahrenheit, temp: 43.22))
+//        initializeCL()
+//        print(getTempFormatted(tempFormat: TempFormat.Fahrenheit, kelvinTemp: 43.22))
         
-        //        getUserDefaultValues()
-        //        getForecast()
+//        getUserDefaultValues()
+        getForecast()
         //        getWeather()
         
     }
@@ -72,11 +73,14 @@ class ViewController: UIViewController   {
     func getForecast(){
         let tempNet = Networking()
         
-        tempNet.getForcastWeek(by: .zipCode(90210)) { (forecastWeek, error) in
+//        tempNet.getForcastWeek(by: .zipCode(90210)) { (forecastWeek, error) in
+
+        tempNet.getForcastWeek(by: .geographicCooridinates(lat: 37.78, lon: -122.4)) {
+            (forecastWeek, error) in
             print("forecast completionHandler")
             guard error == nil else{print(error!.localizedDescription);return}
-            guard let _ = forecastWeek else {return}
-            //            print(weatherTemp)
+            guard let forecastTemp = forecastWeek else {return}
+            print(forecastTemp)
             print("forecast Successfully downloaded")
         }
     }
@@ -93,19 +97,11 @@ class ViewController: UIViewController   {
     func getWeather(){
         let tempNet = Networking()
         
-        tempNet.getWeather(by: .cityId(2172797)) { (cityWeather, error) in
+        tempNet.getWeather(by: .cityId(id:2172797)) { (cityWeather, error) in
             guard error == nil else{print(error!.localizedDescription);return}            
             guard let _ = cityWeather else {return}
             print("cityWeather Successfully downloaded")
         }
-        
-        //        tempNet.getWeather(by: .geographicCooridinates(3.2, 55.2)) { (cityWeather, error) in
-        //            guard error == nil else{print(error!.localizedDescription);return}
-        //
-        //            guard let weatherTemp = cityWeather else {return}
-        //            print(weatherTemp)
-        //        }
-        
     }
 }
 
@@ -158,7 +154,6 @@ extension CoreLocationSupport: CLLocationManagerDelegate{
         DispatchQueue.global().asyncAfter(deadline: .now() + seconds, execute: action)
     }
     
-    
 }
 
 
@@ -174,19 +169,21 @@ extension privateHelperFunctions{
         return dateFormatter.string(from: date as Date)
     }
     
-    //takes in the userDefaults preference and a temp and returns temp
-    func getTempFormatted(tempFormat:TempFormat, temp:Double)->Double{
+    //takes in the userDefaults preference and a kelvinTemp:Double and returns temp
+    func getTempFormatted(tempFormat:TempFormat, kelvinTemp:Double)->Double{
+
         switch tempFormat{
         case .Fahrenheit:
-            return TempType.Fahrenheit(temp).Value
+            return TempType.Fahrenheit(kelvinTemp).Value
         case .Celsius:
-            return TempType.Celsius(temp).Value
+            return TempType.Celsius(kelvinTemp).Value
         }
+        
     }
     
     //takes in a Kelvin value and converts it into a color.
     //convert to celsius first then compare.
-    func getBackgroundColor(with temp:Double){
+    func setBackgroundColor(with temp:Double){
         
         
         let celTemp = Int(TempType.Celsius(temp).Value)
@@ -218,12 +215,9 @@ extension privateHelperFunctions{
         }else{
             UIView.animate(withDuration: 1, animations: {
                 self.backgroundColorView.backgroundColor = #colorLiteral(red: 1, green: 0.06543179506, blue: 0, alpha: 1) //UIColor(red: 1, green: 0.06543179506, blue: 0, alpha: 1)
-
             }, completion: nil)
             
         }
-        
     }
-    
 }
 

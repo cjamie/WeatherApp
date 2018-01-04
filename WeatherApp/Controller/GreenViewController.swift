@@ -26,14 +26,7 @@ class GreenViewController: UIViewController {
         
         if 501...99950 ~= temp {
             responseLabel.text = (userDefaults.object(forKey: "userZip") != nil) ? "default zipcode changed to \(temp)" : "seems... ok 👍\n\(temp) added"
-            
-//            if userDefaults.object(forKey: "userZip") != nil {
-//                responseLabel.text = "default zipcode changed to \(temp)"
-//            }else{
-//                responseLabel.text = "seems... ok 👍\n\(temp) added"
-//            }
-            userDefaults.set(temp, forKey: "userZip") //assign an int to userZip
-
+                userDefaults.set(temp, forKey: "userZip") //assign an int to userZip
         }else{
             responseLabel.text = "Out of range!\n\nPlease try again"
         }
@@ -59,10 +52,8 @@ extension FirstResponderFunctions: UITextFieldDelegate{
     
     //for when i touch outside of the keyboard
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         self.view.endEditing(true)
     }
-    
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

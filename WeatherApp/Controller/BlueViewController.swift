@@ -29,16 +29,6 @@ class BlueViewController: UIViewController {
 
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if segue.identifier == "toMain"{
-            guard let _ = segue.destination as? ViewController else {return}
-            userDefaults.setValue(true, forKey: "WalkthroughComplete")
-//            self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    
     //should rename this because it instantiates now rather than segue
     @IBAction func shouldPerformSegue(_ sender: Any) {
         guard userDefaults.object(forKey: "userZip") != nil else{
@@ -48,8 +38,6 @@ class BlueViewController: UIViewController {
         userDefaults.setValue(true, forKey: "WalkthroughComplete")
         let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WeatherController") as UIViewController
         self.present(viewController, animated: false, completion: nil)
-        
-//        self.performSegue(withIdentifier: "toMain", sender: nil)
     }
 }
 

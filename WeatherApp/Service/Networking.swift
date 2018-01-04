@@ -17,10 +17,10 @@ protocol NetworkProtocol {
 
 //associated type enums
 enum QueryType{
-    case cityName(String) //{cityName, countryCode}
-    case cityId(Int)    //{cityID}
-    case geographicCooridinates(Double, Double) //{lat&lon}
-    case zipCode(Int) //{zipCode&countryCode}
+    case cityName(city:String) //{cityName, countryCode}
+    case cityId(id:Int)    //{cityID}
+    case geographicCooridinates(lat: Double, lon: Double) //{lat&lon}
+    case zipCode(zipcode:Int) //{zipCode&countryCode}
 }
 
 //TODO: use this for returning instead of having 2 separate return functions and return types.
@@ -90,13 +90,14 @@ extension NetworkingFunction: NetworkProtocol{
         var myUrl = String()
         switch type{
         case .cityId(let myId):
-            myUrl = "http://samples.openweathermap.org/data/2.5/forecast/daily?id=\(myId)&appid=\(GlobalStuff.bearer)"//&lang=\(en)
+            
+            myUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?id=\(myId)&appid=\(GlobalStuff.bearer)"//&lang=\(en)
         case .cityName(let myName):
-            myUrl = "http://samples.openweathermap.org/data/2.5/forecast?q=\(myName)&appid=\(GlobalStuff.bearer)"
+            myUrl = "http://api.openweathermap.org/data/2.5/forecast?q=\(myName)&appid=\(GlobalStuff.bearer)"
         case .geographicCooridinates(let lat, let lon):
-            myUrl = "http://samples.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(GlobalStuff.bearer)"
+            myUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(GlobalStuff.bearer)"
         case .zipCode(let myZipCode):
-            myUrl = "http://samples.openweathermap.org/data/2.5/forecast?zip=\(myZipCode),us&appid=\(GlobalStuff.bearer)"
+            myUrl = "http://api.openweathermap.org/data/2.5/forecast?zip=\(myZipCode),us&appid=\(GlobalStuff.bearer)"
         }
 
         guard let uurl = URL(string:myUrl) else {return}
