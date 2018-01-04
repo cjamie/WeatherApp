@@ -34,15 +34,28 @@ extension TempType{
 
 
 class ViewController: UIViewController   {
-    var myCityWeather:CityWeather?
+    var myCityWeather:CityWeather?{
+        didSet {
+            wCityLabel.text = myCityWeather?.name
+            wTempLabel.text = "\(myCityWeather?.main?.temp ?? 999999999)°"
+        }
+    }
+
     var myForecastWeek:ForecastWeek?
     let userDefaults = UserDefaults.standard
     
     @IBOutlet weak var backgroundColorView: UIView!
-    @IBOutlet weak var coreLocationText: UILabel!
+    
+//weather labels
+    @IBOutlet weak var wCityLabel: UILabel!
+    @IBOutlet weak var wTempLabel: UILabel!
+    @IBOutlet weak var wDescLabel: UILabel!
+    @IBOutlet weak var wDayDateLabel: UILabel!
+    @IBOutlet weak var wLowHighLabel: UILabel!
+
+
     @IBAction func updateLocation(_ sender: Any) {
         startUpdatingLocation()
-        setBackgroundColor(with: 70)
     }
     
     var locationManager: CLLocationManager?
@@ -51,7 +64,7 @@ class ViewController: UIViewController   {
         //convenient updating
         didSet {
             //updating labels
-            coreLocationText.text = "Location Lon Lat: \n\(lastLocation?.coordinate.longitude ?? 9001) \(lastLocation?.coordinate.latitude ?? 9001)"
+//            coreLocationText.text = "Location Lon Lat: \n\(lastLocation?.coordinate.longitude ?? 9001) \(lastLocation?.coordinate.latitude ?? 9001)"
         }
     }
     
@@ -63,7 +76,8 @@ class ViewController: UIViewController   {
         
 //        initializeCL()
 //        print(getTempFormatted(tempFormat: TempFormat.Fahrenheit, kelvinTemp: 43.22))
-        
+        setBackgroundColor(with: 70)
+
 //        getUserDefaultValues()
 //        getForecast()
                 getWeather()
@@ -77,12 +91,11 @@ class ViewController: UIViewController   {
 //        tempNet.getForcastWeek(by: .cityName(city: "Boston")) {
 //        tempNet.getForcastWeek(by: .geographicCooridinates(lat: 37.78, lon: -122.4)) {
         tempNet.getForcastWeek(by: .cityId(id: 2172797)) {
-
             (forecastWeek, error) in
             print("forecast completionHandler")
             guard error == nil else{print(error!.localizedDescription);return}
             guard let forecastTemp = forecastWeek else {return}
-//            print(forecastTemp)
+            self.myForecastWeek = forecastTemp
             print("forecast Successfully downloaded")
         }
     }
@@ -106,7 +119,9 @@ class ViewController: UIViewController   {
         tempNet.getWeather(by: .cityName(city: "Boston")) {
             (cityWeather, error) in
             guard error == nil else{print(error!.localizedDescription);return}            
-            guard let _ = cityWeather else {return}
+            guard let weatherTemp = cityWeather else {return}
+            self.myCityWeather = weatherTemp
+
             print("cityWeather Successfully downloaded")
         }
     }
@@ -239,7 +254,6 @@ extension privateTableFunctions: UITableViewDelegate, UITableViewDataSource{
             fatalError("No cell in tableView")
         }
         cell.textLabel?.text = "tempPlaceholder"
-//        . = [indexPath.row].name
         return cell
     }
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
