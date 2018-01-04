@@ -84,5 +84,4 @@ struct Sys: Codable{
     var sunset: Int?
     var pod: String?
     
-
 }

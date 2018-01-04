@@ -83,8 +83,8 @@ class ViewController: UIViewController   {
         setBackgroundColor(with: 70)
 
 //        getUserDefaultValues()
-//        getForecast()
-                getWeather()
+        getForecast()
+    //  getWeather()
         
     }
     
@@ -92,9 +92,9 @@ class ViewController: UIViewController   {
         let tempNet = Networking()
         
 //        tempNet.getForcastWeek(by: .zipCode(zipcode: 90210)) {
-//        tempNet.getForcastWeek(by: .cityName(city: "Boston")) {
+        tempNet.getForcastWeek(by: .cityName(city: "Boston")) {
 //        tempNet.getForcastWeek(by: .geographicCooridinates(lat: 37.78, lon: -122.4)) {
-        tempNet.getForcastWeek(by: .cityId(id: 2172797)) {
+//        tempNet.getForcastWeek(by: .cityId(id: 2172797)) {
             (forecastWeek, error) in
             print("forecast completionHandler")
             guard error == nil else{print(error!.localizedDescription);return}
@@ -294,3 +294,15 @@ extension privateTableFunctions: UITableViewDelegate, UITableViewDataSource{
     
 }
 
+typealias privateCollectionFunctions = ViewController
+extension privateTableFunctions: UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
+    
+}
